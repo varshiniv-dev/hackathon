@@ -1,0 +1,1 @@
+import fs from 'fs';import path from 'path';const src=path.resolve('../frontend/dist');const dst=path.resolve('www');if(!fs.existsSync(src)){console.error('Build frontend first: cd ../frontend && npm install && npm run build');process.exit(1)}fs.rmSync(dst,{recursive:true,force:true});fs.cpSync(src,dst,{recursive:true});console.log('Copied frontend dist to mobile/www');
