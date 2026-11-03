@@ -2,8 +2,17 @@ import React, { useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { 
   Sprout, Store, AlertTriangle, Users, Layers, Sliders, Mic, Cpu, Sparkles, 
-  Trophy, Map, IndianRupee, Leaf, Heart, ChevronLeft, ChevronRight, Handshake, X, Languages 
+  Trophy, Map, IndianRupee, Leaf, Heart, ChevronLeft, ChevronRight, Handshake, X, Languages,
+  Lock, Mail, UserCheck, LogOut, ShieldCheck
 } from "lucide-react";
+
+// Self-inject Tailwind CSS CDN so styling never fails or goes missing
+if (typeof document !== 'undefined' && !document.getElementById('tailwind-cdn')) {
+  const script = document.createElement('script');
+  script.id = 'tailwind-cdn';
+  script.src = 'https://cdn.tailwindcss.com';
+  document.head.appendChild(script);
+}
 
 const MANDI_DATA = [
   { mandi: "Mandya APMC", crop: "Tomato", modal_price: 2400, lat: 12.5218, lon: 76.8956, buyer_name: "Mandya Agro Traders", verified: true, licence_status: "Active", deal_history_score: 25, payment_terms: "same_day", farmer_rating: 4.5, trend: "Rising" },
@@ -22,38 +31,163 @@ const MANDI_DATA = [
 
 const I18N = {
   en: {
-    navPage1: "Problem & Research", navPage2: "AI Net-Return Engine", navPage3: "Top 3 Mandis", navPage4: "Route Map", navPage5: "Impact & Team",
-    prevBtn: "Previous Page", nextBtn: "Next Page",
+    navPage1: "Problem & Research", 
+    navPage2: "AI Net-Return Engine", 
+    navPage3: "Top 3 Mandis", 
+    navPage4: "Route Map", 
+    navPage5: "Impact & Team",
+    prevBtn: "Previous Page", 
+    nextBtn: "Next Page",
     p1Title: "Why Listed Market Prices are Misleading for Perishable Farmers",
     p1Subtitle: "Most small farmers sell to nearby local traders due to perishable crop urgency. Existing platforms like Agmarknet display listed prices, but completely ignore transport costs, transit spoilage losses, and buyer reliability.",
-    stat1Desc: "of surveyed crop sales go to local village traders; only 4.6% reach APMC mandis (NSS 77th Round MoSPI).[cite: 1]",
-    stat2Desc: "of perishable fruits and vegetables are lost in transit before reaching distant markets (ICAR-CIPHET).[cite: 1]",
-    stat3Desc: "of Indian farm households own less than 1 hectare with limited individual bargaining leverage.[cite: 1]",
+    stat1Desc: "of surveyed crop sales go to local village traders; only 4.6% reach APMC mandis (NSS 77th Round MoSPI)[cite: 1].",
+    stat2Desc: "of perishable fruits and vegetables are lost in transit before reaching distant markets (ICAR-CIPHET)[cite: 1].",
+    stat3Desc: "of Indian farm households own less than 1 hectare with limited individual bargaining leverage[cite: 1].",
     gapMatrixTitle: "Existing Solutions vs. AgriConnect AI Gap Analysis[cite: 1]",
     p2InputTitle: "Farmer Harvest & Route Parameters[cite: 1]",
-    selectCrop: "Crop Type", quantity: "Harvest Quantity (Quintals)", farmerLocation: "Farmer Village / Hub", transportRate: "Transport Rate (₹ / km)", minTrust: "Buyer Trust Filter Threshold",
+    selectCrop: "Crop Type", 
+    quantity: "Harvest Quantity (Quintals)", 
+    farmerLocation: "Farmer Village / Hub", 
+    transportRate: "Transport Rate (₹ / km)", 
+    minTrust: "Buyer Trust Filter Threshold",
     p3CardsHeader: "Top 3 Ranked Options (Filtered by Buyer Trust)[cite: 1]",
     p4MapTitle: "Regional Mandi & Route Distance Canvas[cite: 1]",
-    p4MapSub: "Visualizes OpenRouteService driving distances and optimal green route vectors from Mandya.[cite: 1]"
+    p4MapSub: "Visualizes OpenRouteService driving distances and optimal green route vectors from Mandya[cite: 1]."
   },
   kn: {
-    navPage1: "ಸಮಸ್ಯೆ ಮತ್ತು ಸಂಶೋಧನೆ", navPage2: "ಎಐ ಲಾಭದ ಲೆಕ್ಕಾಚಾರ", navPage3: "ಉನ್ನತ ೩ ಮಂಡಿಗಳು", navPage4: "ಮಾರ್ಗ ನಕ್ಷೆ", navPage5: "ಪರಿಣಾಮ ಮತ್ತು ತಂಡ",
-    prevBtn: "ಹಿಂದಿನ ಪುಟ", nextBtn: "ಮುಂದಿನ ಪುಟ",
+    navPage1: "ಸಮಸ್ಯೆ ಮತ್ತು ಸಂಶೋಧನೆ", 
+    navPage2: "ಎಐ ಲಾಭದ ಲೆಕ್ಕಾಚಾರ", 
+    navPage3: "ಉನ್ನತ ೩ ಮಂಡಿಗಳು", 
+    navPage4: "ಮಾರ್ಗ ನಕ್ಷೆ", 
+    navPage5: "ಪರಿಣಾಮ ಮತ್ತು ತಂಡ",
+    prevBtn: "ಹಿಂದಿನ ಪುಟ", 
+    nextBtn: "ಮುಂದಿನ ಪುಟ",
     p1Title: "ರೈತರಿಗೆ ಮಾರುಕಟ್ಟೆಯ ಕೇವಲ ಬೆಲೆ ಪಟ್ಟಿ ಏಕೆ ಮೋಸಗೊಳಿಸುತ್ತದೆ?",
     p1Subtitle: "ಹೆಚ್ಚಿನ ಸಣ್ಣ ರೈತರು ಕೊಳೆಯುವ ಬೆಳೆಗಳ ಕಾರಣದಿಂದ ಸ್ಥಳೀಯ ವರ್ತಕರಿಗೆ ಮಾರಾಟ ಮಾಡುತ್ತಾರೆ. ಅಗ್ರ್‌ಮಾರ್ಕ್‌ನೆಟ್ ನಂತಹ ವೇದಿಕೆಗಳು ಕೇವಲ ಬೆಲೆಯನ್ನು ತೋರಿಸುತ್ತವೆ, ಆದರೆ ಸಾರಿಗೆ ವೆಚ್ಚ ಮತ್ತು ನಷ್ಟವನ್ನು ಲೆಕ್ಕಿಸುವುದಿಲ್ಲ.",
-    stat1Desc: "ಸಮೀಕ್ಷೆ ಮಾಡಿದ ಬೆಳೆ ಮಾರಾಟದಲ್ಲಿ ಸ್ಥಳೀಯ ವರ್ತಕರಿಗೆ ತಲುಪುತ್ತದೆ; ಕೇವಲ ೪.೬% ಎಪಿಎಂಸಿ ಮಂಡಿಗಳನ್ನು ತಲುಪುತ್ತದೆ.[cite: 1]",
-    stat2Desc: "ಸಾರಿಗೆ ಸಮಯದಲ್ಲಿ ಕೊಳೆಯುವ ಹಣ್ಣುಗಳು ಮತ್ತು ತರಕಾರಿಗಳು ನಾಶವಾಗುತ್ತವೆ.[cite: 1]",
-    stat3Desc: "ಭಾರತೀಯ ರೈತ ಕುಟುಂಬಗಳು ೧ ಹೆಕ್ಟೇರ್‌ಗಿಂತ ಕಡಿಮೆ ಜಮೀನು ಹೊಂದಿದ್ದಾರೆ.[cite: 1]",
+    stat1Desc: "ಸಮೀಕ್ಷೆ ಮಾಡಿದ ಬೆಳೆ ಮಾರಾಟದಲ್ಲಿ ಸ್ಥಳೀಯ ವರ್ತಕರಿಗೆ ತಲುಪುತ್ತದೆ; ಕೇವಲ ೪.೬% ಎಪಿಎಂಸಿ ಮಂಡಿಗಳನ್ನು ತಲುಪುತ್ತದೆ[cite: 1].",
+    stat2Desc: "ಸಾರಿಗೆ ಸಮಯದಲ್ಲಿ ಕೊಳೆಯುವ ಹಣ್ಣುಗಳು ಮತ್ತು ತರಕಾರಿಗಳು ನಾಶವಾಗುತ್ತವೆ[cite: 1].",
+    stat3Desc: "ಭಾರತೀಯ ರೈತ ಕುಟುಂಬಗಳು ೧ ಹೆಕ್ಟೇರ್‌ಗಿಂತ ಕಡಿಮೆ ಜಮೀನು ಹೊಂದಿದ್ದಾರೆ[cite: 1].",
     gapMatrixTitle: "ಪ್ರಸ್ತುತ ಪರಿಹಾರಗಳು ಮತ್ತು ಅಗ್ರಿಕನೆಕ್ಟ್ ಎಐ ಹೋಲಿಕೆ[cite: 1]",
     p2InputTitle: "ರೈತರ ವಿವರಗಳ ನಮೂದು[cite: 1]",
-    selectCrop: "ಬೆಳೆಯ ಪ್ರಕಾರ", quantity: "ಪ್ರಮಾಣ (ಕ್ವಿಂಟಾಲ್‌ನಲ್ಲಿ)", farmerLocation: "ರೈತರ ಗ್ರಾಮ / ಕೇಂದ್ರ", transportRate: "ಸಾರಿಗೆ ದರ (₹ / ಕಿಮೀ)", minTrust: "ಖರೀದಿದಾರರ ನಂಬಿಕೆ ಮಿತಿ",
+    selectCrop: "ಬೆಳೆಯ ಪ್ರಕಾರ", 
+    quantity: "ಪ್ರಮಾಣ (ಕ್ವಿಂಟಾಲ್‌ನಲ್ಲಿ)", 
+    farmerLocation: "ರೈತರ ಗ್ರಾಮ / ಕೇಂದ್ರ", 
+    transportRate: "ಸಾರಿಗೆ ದರ (₹ / ಕಿಮೀ)", 
+    minTrust: "ಖರೀದಿದಾರರ ನಂಬಿಕೆ ಮಿತಿ",
     p3CardsHeader: "ಉನ್ನತ ೩ ಆಯ್ಕೆಗಳು (ನಂಬಿಕೆ ಆಧಾರಿತ)[cite: 1]",
     p4MapTitle: "ಸಾರಿಗೆ ಮಾರ್ಗ ನಕ್ಷೆ[cite: 1]",
-    p4MapSub: "ಮಂಡ್ಯದಿಂದ ಸಾರಿಗೆ ದೂರ ಮತ್ತು ಉತ್ತಮ ಮಾರ್ಗಗಳನ್ನು ತೋರಿಸುತ್ತದೆ.[cite: 1]"
+    p4MapSub: "ಮಂಡ್ಯದಿಂದ ಸಾರಿಗೆ ದೂರ ಮತ್ತು ಉತ್ತಮ ಮಾರ್ಗಗಳನ್ನು ತೋರಿಸುತ್ತದೆ[cite: 1]."
   }
 };
 
-function App() {
+// ================= COMPONENT: SIGN-IN PAGE =================
+function LoginPage({ onLogin }) {
+  const [selectedRole, setSelectedRole] = useState("FARMER");
+  const [email, setEmail] = useState("farmer@agriconnect.in");
+  const [password, setPassword] = useState("demo123");
+
+  const roles = [
+    { id: "FARMER", label: "🌱 Farmer", email: "farmer@agriconnect.in" },
+    { id: "BUYER", label: "🛒 Buyer", email: "buyer@agriconnect.in" },
+    { id: "FPO", label: "🌾 FPO", email: "fpo@agriconnect.in" },
+    { id: "LOGISTICS", label: "🚚 Logistics", email: "transporter@agriconnect.in" },
+    { id: "AGENT", label: "🤝 Market Agent", email: "agent@agriconnect.in" },
+    { id: "APMC", label: "🏛️ APMC Admin", email: "admin@apmc.gov.in" },
+  ];
+
+  const handleRoleSelect = (roleObj) => {
+    setSelectedRole(roleObj.id);
+    setEmail(roleObj.email);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onLogin({ role: selectedRole, email });
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl space-y-6">
+        <div className="text-center space-y-2">
+          <div className="w-16 h-16 bg-emerald-500/20 border border-emerald-500/40 rounded-2xl mx-auto flex items-center justify-center shadow-lg shadow-emerald-500/10">
+            <Sprout className="w-9 h-9 text-emerald-400" />
+          </div>
+          <h1 className="text-2xl font-black text-white tracking-tight">AgriConnect AI</h1>
+          <p className="text-xs text-slate-400">Team Inframind | LEAP Agritech Hackathon 2026[cite: 1]</p>
+        </div>
+
+        {/* Role Switcher Grid */}
+        <div className="space-y-1.5">
+          <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Select Portal Role</label>
+          <div className="grid grid-cols-2 gap-2">
+            {roles.map((r) => (
+              <button
+                key={r.id}
+                type="button"
+                onClick={() => handleRoleSelect(r)}
+                className={`py-2 px-3 text-xs font-bold rounded-xl transition border text-left flex items-center justify-between ${
+                  selectedRole === r.id
+                    ? "bg-emerald-600 text-slate-950 border-emerald-400 shadow-md"
+                    : "bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-700"
+                }`}
+              >
+                <span>{r.label}</span>
+                {selectedRole === r.id && <ShieldCheck className="w-3.5 h-3.5" />}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Login Form */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-1">
+            <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Email Address</label>
+            <div className="relative flex items-center">
+              <Mail className="absolute left-3 w-4 h-4 text-slate-500" />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-xs font-semibold text-white focus:outline-none focus:border-emerald-500"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Password</label>
+            <div className="relative flex items-center">
+              <Lock className="absolute left-3 w-4 h-4 text-slate-500" />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-xs font-semibold text-white focus:outline-none focus:border-emerald-500"
+              />
+            </div>
+          </div>
+
+          <div className="p-3 bg-emerald-950/40 border border-emerald-500/30 rounded-xl text-emerald-300 text-xs flex items-center space-x-2">
+            <UserCheck className="w-4 h-4 shrink-0 text-emerald-400" />
+            <span>Pre-filled credentials enabled for hackathon judges evaluation.</span>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-extrabold py-3 rounded-xl transition shadow-lg shadow-emerald-600/20 text-xs uppercase tracking-wider"
+          >
+            Sign In as {selectedRole}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+// ================= MAIN APP COMPONENT =================
+export default function App() {
+  const [user, setUser] = useState(null); // Auth State
   const [currentPage, setCurrentPage] = useState(1);
   const [currentLang, setCurrentLang] = useState('en');
   const [crop, setCrop] = useState('Tomato');
@@ -89,6 +223,7 @@ function App() {
   }
 
   useEffect(() => {
+    if (!user) return;
     const [userLat, userLon] = villageLocation.split(',').map(Number);
     const spoilageRates = { Tomato: 0.002, Onion: 0.0004, Potato: 0.0001 };
     const spoilageRatePerHour = spoilageRates[crop] || 0.001;
@@ -127,18 +262,17 @@ function App() {
       const top1 = computed[0];
       if (computed.length > 1) {
         const diff = (top1.net_total - computed[1].net_total).toLocaleString('en-IN');
-        setReasoning(`${top1.mandi} ranks #1 with an estimated net total of ₹${top1.net_total.toLocaleString('en-IN')} (₹${diff} higher than runner-up). Higher modal price outweighs transit spoilage.[cite: 1]`);
+        setReasoning(`${top1.mandi} ranks #1 with an estimated net total of ₹${top1.net_total.toLocaleString('en-IN')} (₹${diff} higher than runner-up). Higher modal price outweighs transit spoilage[cite: 1].`);
       } else {
-        setReasoning(`${top1.mandi} is the top option delivering ₹${top1.net_total.toLocaleString('en-IN')} net returns.[cite: 1]`);
+        setReasoning(`${top1.mandi} is the top option delivering ₹${top1.net_total.toLocaleString('en-IN')} net returns[cite: 1].`);
       }
     } else {
-      setReasoning("No verified buyers match your trust score filter threshold.[cite: 1]");
+      setReasoning("No verified buyers match your trust score filter threshold[cite: 1].");
     }
-  }, [crop, quantity, villageLocation, transportRate, minTrust]);
+  }, [crop, quantity, villageLocation, transportRate, minTrust, user]);
 
-  // Render Canvas Map on Page 4
   useEffect(() => {
-    if (currentPage === 4 && canvasRef.current) {
+    if (currentPage === 4 && canvasRef.current && user) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
       canvas.width = canvas.parentElement.clientWidth;
@@ -187,11 +321,15 @@ function App() {
       ctx.fillStyle = '#fef3c7';
       ctx.fillText("Farmer Hub", userPos.x + 10, userPos.y + 4);
     }
-  }, [currentPage, results, villageLocation]);
+  }, [currentPage, results, villageLocation, user]);
+
+  // If user is not logged in, render Login Page
+  if (!user) {
+    return <LoginPage onLogin={(userData) => setUser(userData)} />;
+  }
 
   return (
     <div className="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans select-none">
-      {/* Top Header */}
       <header className="bg-gradient-to-r from-[#022c22] via-[#064e3b] to-[#047857] border-b border-emerald-900/60 sticky top-0 z-40 shadow-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col md:flex-row justify-between items-center gap-3">
           <div className="flex items-center space-x-3 w-full md:w-auto justify-between md:justify-start">
@@ -202,7 +340,7 @@ function App() {
               <div>
                 <h1 className="text-lg font-extrabold tracking-tight flex items-center gap-2 text-white">
                   AgriConnect AI 
-                  <span className="text-[10px] bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 font-bold px-2 py-0.5 rounded-full">5-Page App[cite: 1]</span>
+                  <span className="text-[10px] bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 font-bold px-2 py-0.5 rounded-full">{user.role}</span>
                 </h1>
                 <p className="text-[11px] text-emerald-200/80">Team Inframind | LEAP Agritech Hackathon 2026[cite: 1]</p>
               </div>
@@ -213,7 +351,6 @@ function App() {
             </button>
           </div>
 
-          {/* Navigation Tabs */}
           <nav className="flex items-center space-x-1 bg-slate-900/80 p-1 rounded-2xl border border-emerald-900/40 w-full md:w-auto overflow-x-auto">
             {[1, 2, 3, 4, 5].map((pageNum) => (
               <button 
@@ -233,17 +370,20 @@ function App() {
             ))}
           </nav>
 
-          <button onClick={() => setCurrentLang(currentLang === 'en' ? 'kn' : 'en')} className="hidden md:flex bg-emerald-950/80 hover:bg-emerald-900 text-emerald-200 px-3.5 py-1.5 rounded-xl border border-emerald-500/40 text-xs font-semibold items-center gap-2 transition">
-            <Languages className="w-4 h-4" />
-            <span>{currentLang === 'en' ? 'ಕನ್ನಡ' : 'English'}</span>
-          </button>
+          <div className="flex items-center space-x-2">
+            <button onClick={() => setCurrentLang(currentLang === 'en' ? 'kn' : 'en')} className="hidden md:flex bg-emerald-950/80 hover:bg-emerald-900 text-emerald-200 px-3.5 py-1.5 rounded-xl border border-emerald-500/40 text-xs font-semibold items-center gap-2 transition">
+              <Languages className="w-4 h-4" />
+              <span>{currentLang === 'en' ? 'ಕನ್ನಡ' : 'English'}</span>
+            </button>
+            <button onClick={() => setUser(null)} className="bg-rose-950/80 hover:bg-rose-900 text-rose-300 px-3 py-1.5 rounded-xl border border-rose-500/40 text-xs font-bold flex items-center gap-1.5 transition">
+              <LogOut className="w-3.5 h-3.5" />
+              <span>Sign Out</span>
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Main Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
-        
-        {/* PAGE 1: PROBLEM & RESEARCH */}
         {currentPage === 1 && (
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
@@ -293,7 +433,6 @@ function App() {
           </div>
         )}
 
-        {/* PAGE 2: ENGINE & INPUTS */}
         {currentPage === 2 && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             <div className="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-5">
@@ -378,7 +517,6 @@ function App() {
           </div>
         )}
 
-        {/* PAGE 3: TOP 3 MANDIS */}
         {currentPage === 3 && (
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-emerald-950 via-slate-900 to-emerald-950 border border-emerald-700/50 rounded-3xl p-6 shadow-2xl space-y-2">
@@ -417,7 +555,6 @@ function App() {
           </div>
         )}
 
-        {/* PAGE 4: ROUTE MAP */}
         {currentPage === 4 && (
           <div className="space-y-6">
             <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4 shadow-xl">
@@ -443,7 +580,6 @@ function App() {
           </div>
         )}
 
-        {/* PAGE 5: IMPACT & TEAM */}
         {currentPage === 5 && (
           <div className="space-y-6">
             <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-6">
@@ -458,109 +594,18 @@ function App() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
                   <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm"><IndianRupee className="w-4 h-4" /><span>Economic Impact[cite: 1]</span></div>
-                  <p className="text-xs text-slate-300 leading-relaxed">Increases farmer net income by ₹15,000–₹30,000 per season by unlocking high-paying distant mandis after accounting for transport.[cite: 1]</p>
+                  <p className="text-xs text-slate-300 leading-relaxed">Increases farmer net income by ₹15,000–₹30,000 per season by unlocking high-paying distant mandis after accounting for transport[cite: 1].</p>
                 </div>
                 <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
                   <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm"><Leaf className="w-4 h-4" /><span>Environmental Impact[cite: 1]</span></div>
-                  <p className="text-xs text-slate-300 leading-relaxed">Reduces perishable harvest losses by 6–16% through transit-time calculations and optimal route selections.[cite: 1]</p>
+                  <p className="text-xs text-slate-300 leading-relaxed">Reduces perishable harvest losses by 6–16% through transit-time calculations and optimal route selections[cite: 1].</p>
                 </div>
                 <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
                   <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm"><Heart className="w-4 h-4" /><span>Social Impact[cite: 1]</span></div>
-                  <p className="text-xs text-slate-300 leading-relaxed">Empowers smallholders with Kannada voice guidance and protects them from non-paying buyers using Trust Scores.[cite: 1]</p>
+                  <p className="text-xs text-slate-300 leading-relaxed">Empowers smallholders with Kannada voice guidance and protects them from non-paying buyers using Trust Scores[cite: 1].</p>
                 </div>
               </div>
 
               <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3">
                 <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Team Inframind Members[cite: 1]</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-medium text-slate-300">
-                  <div className="p-3 bg-slate-900 rounded-xl border border-slate-800">
-                    <p className="font-bold text-emerald-400 text-sm">Aishwarya NS[cite: 1]</p>
-                    <p className="text-slate-400">Team Leader[cite: 1]</p>
-                    <p className="text-slate-500 text-[11px]">aishwaryans048@gmail.com[cite: 1]</p>
-                  </div>
-                  <div className="p-3 bg-slate-900 rounded-xl border border-slate-800">
-                    <p className="font-bold text-white text-sm">Varshini V[cite: 1]</p>
-                    <p className="text-slate-400">Team Member[cite: 1]</p>
-                    <p className="text-slate-500 text-[11px]">GMIT Mandya[cite: 1]</p>
-                  </div>
-                  <div className="p-3 bg-slate-900 rounded-xl border border-slate-800">
-                    <p className="font-bold text-white text-sm">Saniya Banu[cite: 1]</p>
-                    <p className="text-slate-400">Team Member[cite: 1]</p>
-                    <p className="text-slate-500 text-[11px]">GMIT Mandya[cite: 1]</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-      </main>
-
-      {/* Footer Navigation */}
-      <footer className="bg-slate-900 border-t border-slate-800 py-4 px-4 sm:px-8 mt-auto sticky bottom-0 z-30 shadow-2xl">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <button onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))} disabled={currentPage === 1} className="bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed">
-            <ChevronLeft className="w-4 h-4" /><span>{t.prevBtn}</span>
-          </button>
-          <span className="text-xs font-bold text-slate-400 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">Page {currentPage} of 5</span>
-          <button onClick={() => setCurrentPage(prev => Math.min(5, prev + 1))} disabled={currentPage === 5} className="bg-emerald-600 hover:bg-emerald-500 text-slate-950 px-4 py-2 rounded-xl text-xs font-extrabold transition flex items-center gap-1.5 shadow-lg shadow-emerald-600/20 disabled:opacity-40">
-            <span>{t.nextBtn}</span><ChevronRight className="w-4 h-4" />
-          </button>
-        </div>
-      </footer>
-
-      {/* Deal Confirmation Modal */}
-      {modalData && (
-        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
-            <div className="flex justify-between items-center border-b border-slate-800 pb-3">
-              <h3 className="text-base font-bold text-emerald-400 flex items-center gap-2">
-                <Handshake className="w-5 h-5" /><span>Lock Deal & Dispatch Truck[cite: 1]</span>
-              </h3>
-              <button onClick={() => setModalData(null)} className="text-slate-400 hover:text-white"><X className="w-5 h-5" /></button>
-            </div>
-            <p className="text-xs text-slate-300 leading-relaxed">Locking deal with {modalData.buyer_name} at {modalData.mandi} for estimated payout of ₹{modalData.net_total.toLocaleString('en-IN')}.[cite: 1]</p>
-            <div className="bg-slate-950 p-3 rounded-xl text-xs space-y-1.5 border border-slate-800 text-slate-300">
-              <div className="flex justify-between"><span>Payment Terms:</span><span className="text-emerald-400 font-bold">APMC Direct Settlement ✅[cite: 1]</span></div>
-              <div className="flex justify-between"><span>Buyer Verification:</span><span className="text-emerald-400 font-bold">Verified License ✅[cite: 1]</span></div>
-            </div>
-            <div className="flex gap-2 pt-2">
-              <button onClick={() => { alert("✅ Contract confirmed! Digital APMC code sent to farmer and buyer mobile numbers.[cite: 1]"); setModalData(null); }} className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition">Confirm Contract[cite: 1]</button>
-              <button onClick={() => setModalData(null)} className="bg-slate-800 text-slate-300 font-bold px-4 py-2.5 rounded-xl text-xs transition">Cancel</button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-createRoot(document.getElementById("root")).render(<App />);
-// 1. Add these 6 roles to your state if not already there:
-  const [role, setRole] = useState('FARMER');
-
-  const rolesList = [
-    ['FARMER', '🌱'],
-    ['BUYER', '🛒'],
-    ['FPO', '🌾'],
-    ['LOGISTICS', '🚚'],
-    ['MARKET_AGENT', '🤝'],
-    ['APMC', '🏛️']
-];
-  {/* Navigation Tabs - All 6 Roles */}
-          <nav className="flex items-center space-x-1 bg-slate-900/80 p-1 rounded-2xl border border-emerald-900/40 w-full md:w-auto overflow-x-auto custom-scrollbar">
-            {rolesList.map(([r, icon], idx) => (
-              <button 
-                key={r}
-                onClick={() => setRole(r)} 
-                className={`nav-tab text-xs font-semibold px-3 py-2 rounded-xl transition flex items-center gap-1.5 ${
-                  role === r 
-                    ? 'text-emerald-400 bg-emerald-950/80 border border-emerald-500/30' 
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                <span>{icon}</span>
-                <span>{r.replace('_', ' ')}</span>
-              </button>
-            ))}
-          </nav>
+                <div className="grid grid-cols-1 md:grid-cols-
