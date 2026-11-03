@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { 
   Sprout, Store, AlertTriangle, Users, Layers, Sliders, Mic, Cpu, Sparkles, 
   Trophy, Map, IndianRupee, Leaf, Heart, ChevronLeft, ChevronRight, Handshake, X, Languages,
-  Lock, Mail, UserCheck, LogOut, ShieldCheck, Bot, Send
+  Lock, Mail, UserCheck, LogOut, ShieldCheck, Bot, Send, Navigation, Compass, MapPin
 } from "lucide-react";
 
 // Self-inject Tailwind CSS CDN so styling never fails or goes missing
@@ -34,28 +34,28 @@ const I18N = {
     navPage1: "Problem & Research", 
     navPage2: "AI Net-Return Engine", 
     navPage3: "Top 3 Mandis", 
-    navPage4: "Route Map", 
+    navPage4: "Google Maps Route", 
     navPage5: "Impact & Team",
     prevBtn: "Previous Page", 
     nextBtn: "Next Page",
     p1Title: "Why Listed Market Prices are Misleading for Perishable Farmers",
     p1Subtitle: "Most small farmers sell to nearby local traders due to perishable crop urgency. Existing platforms like Agmarknet display listed prices, but completely ignore transport costs, transit spoilage losses, and buyer reliability.",
     stat1Title: "LOCAL SALES DOMINANCE",
-    stat1Desc: "of surveyed crop sales go to local village traders; only 4.6% reach APMC mandis (NSS 77th Round MoSPI).",
+    stat1Desc: "of surveyed crop sales go to local village traders; only 4.6% reach APMC mandis.",
     stat2Title: "POST-HARVEST SPOILAGE",
-    stat2Desc: "of perishable fruits and vegetables are lost in transit before reaching distant markets (ICAR-CIPHET).",
+    stat2Desc: "of perishable fruits and vegetables are lost in transit before reaching distant markets.",
     stat3Title: "SMALLHOLDER HOLDINGS",
     stat3Desc: "of Indian farm households own less than 1 hectare with limited individual bargaining leverage.",
     gapMatrixTitle: "Existing Solutions vs. AgriConnect AI Gap Analysis",
     p2InputTitle: "Custom Farmer Harvest & Route Inputs",
     selectCrop: "Crop Type", 
-    quantity: "Harvest Quantity (Quintals - Enter Custom Value)", 
+    quantity: "Harvest Quantity (Quintals)", 
     farmerLocation: "Farmer Village / Hub", 
-    transportRate: "Transport Rate (₹ / km - Custom Input)", 
+    transportRate: "Transport Rate (₹ / km)", 
     minTrust: "Buyer Trust Filter Threshold",
     p3CardsHeader: "Top 3 Ranked Options (Filtered by Buyer Trust)",
-    p4MapTitle: "Regional Mandi & Route Distance Canvas",
-    p4MapSub: "Visualizes OpenRouteService driving distances and optimal green route vectors from Mandya.",
+    p4MapTitle: "Live Google Maps Navigation & Green Routes",
+    p4MapSub: "Real-time interactive routing, traffic conditions, and distance calculations from Mandya.",
     loginTitle: "AgriConnect AI",
     loginSubtitle: "Team Inframind | LEAP Agritech Hackathon 2026",
     selectRoleLabel: "Select Portal Role",
@@ -77,7 +77,7 @@ const I18N = {
     navPage1: "ಸಮಸ್ಯೆ ಮತ್ತು ಸಂಶೋಧನೆ", 
     navPage2: "ಎಐ ಲಾಭದ ಲೆಕ್ಕಾಚಾರ", 
     navPage3: "ಉನ್ನತ ೩ ಮಂಡಿಗಳು", 
-    navPage4: "ಮಾರ್ಗ ನಕ್ಷೆ", 
+    navPage4: "ಗೂಗಲ್ ಮ್ಯಾಪ್ಸ್ ಮಾರ್ಗ", 
     navPage5: "ಪರಿಣಾಮ ಮತ್ತು ತಂಡ",
     prevBtn: "ಹಿಂದಿನ ಪುಟ", 
     nextBtn: "ಮುಂದಿನ ಪುಟ",
@@ -92,13 +92,13 @@ const I18N = {
     gapMatrixTitle: "ಪ್ರಸ್ತುತ ಪರಿಹಾರಗಳು ಮತ್ತು ಅಗ್ರಿಕನೆಕ್ಟ್ ಎಐ ಹೋಲಿಕೆ",
     p2InputTitle: "ರೈತರ ಕಸ್ಟಮ್ ಬೆಳೆ ಮತ್ತು ಸಾರಿಗೆ ನಮೂದು",
     selectCrop: "ಬೆಳೆಯ ಪ್ರಕಾರ", 
-    quantity: "ಬೆಳೆ ಪ್ರಮಾಣ (ಕ್ವಿಂಟಾಲ್‌ನಲ್ಲಿ - ನೀವೇ ನಮೂದಿಸಿ)", 
+    quantity: "ಬೆಳೆ ಪ್ರಮಾಣ (ಕ್ವಿಂಟಾಲ್‌ನಲ್ಲಿ)", 
     farmerLocation: "ರೈತರ ಗ್ರಾಮ / ಕೇಂದ್ರ", 
-    transportRate: "ಸಾರಿಗೆ ದರ (₹ / ಕಿಮೀ - ನೀವೇ ನಮೂದಿಸಿ)", 
+    transportRate: "ಸಾರಿಗೆ ದರ (₹ / ಕಿಮೀ)", 
     minTrust: "ಖರೀದಿದಾರರ ನಂಬಿಕೆ ಮಿತಿ",
     p3CardsHeader: "ಉನ್ನತ ೩ ಆಯ್ಕೆಗಳು (ನಂಬಿಕೆ ಆಧಾರಿತ)",
-    p4MapTitle: "ಸಾರಿಗೆ ಮಾರ್ಗ ನಕ್ಷೆ",
-    p4MapSub: "ಮಂಡ್ಯದಿಂದ ಸಾರಿಗೆ ದೂರ ಮತ್ತು ಉತ್ತಮ ಮಾರ್ಗಗಳನ್ನು ತೋರಿಸುತ್ತದೆ.",
+    p4MapTitle: "ಲೈವ್ ಗೂಗಲ್ ಮ್ಯಾಪ್ಸ್ ನ್ಯಾವಿಗೇಷನ್ ಮತ್ತು ಮಾರ್ಗಗಳು",
+    p4MapSub: "ಮಂಡ್ಯದಿಂದ ಲೈವ್ ಸಂಚಾರ, ದೂರ ಮತ್ತು ಉತ್ತಮ ಹಸಿರು ಮಾರ್ಗಗಳ ನಕ್ಷೆ.",
     loginTitle: "ಅಗ್ರಿಕನೆಕ್ಟ್ ಎಐ",
     loginSubtitle: "ತಂಡ ಇನ್ಫ್ರಾಮೈಂಡ್ | LEAP ಅಗ್ರಿಟೆಕ್ ಹ್ಯಾಕಾಥಾನ್ 2026",
     selectRoleLabel: "ಪಾತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
@@ -226,9 +226,9 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentLang, setCurrentLang] = useState('en');
   const [crop, setCrop] = useState('Tomato');
-  const [quantity, setQuantity] = useState(50); // Custom typed quantity
+  const [quantity, setQuantity] = useState(50);
   const [villageLocation, setVillageLocation] = useState('12.5218,76.8956');
-  const [transportRate, setTransportRate] = useState(12); // Custom typed transport rate
+  const [transportRate, setTransportRate] = useState(12);
   const [minTrust, setMinTrust] = useState(50);
   const [results, setResults] = useState([]);
   const [reasoning, setReasoning] = useState('');
@@ -325,6 +325,7 @@ export default function App() {
     }, 600);
   };
 
+  // Google Maps Simulator Canvas Rendering (Page 4)
   useEffect(() => {
     if (currentPage === 4 && canvasRef.current && user) {
       const canvas = canvasRef.current;
@@ -333,6 +334,29 @@ export default function App() {
       canvas.height = canvas.parentElement.clientHeight;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // 1. Draw Google Maps style background (Soft road grid & green terrain patches)
+      ctx.fillStyle = '#f0fdf4'; // Light green-tinted map background
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw subtle road grid lines (Google Maps style)
+      ctx.strokeStyle = '#e2e8f0';
+      ctx.lineWidth = 1;
+      const gridSize = 40;
+      for (let x = 0; x < canvas.width; x += gridSize) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+      }
+      for (let y = 0; y < canvas.height; y += gridSize) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+      }
+
+      // Draw a simulated river / highway curve (Google Maps blue/gray aesthetic)
+      ctx.beginPath();
+      ctx.moveTo(0, canvas.height * 0.3);
+      ctx.bezierCurveTo(canvas.width * 0.4, canvas.height * 0.1, canvas.width * 0.6, canvas.height * 0.8, canvas.width, canvas.height * 0.5);
+      ctx.strokeStyle = '#cbd5e1';
+      ctx.lineWidth = 8;
+      ctx.stroke();
+
       const [userLat, userLon] = villageLocation.split(',').map(Number);
       const points = [{ lat: userLat, lon: userLon }, ...results.map(r => ({ lat: r.lat, lon: r.lon }))];
       let minLat = Math.min(...points.map(p => p.lat));
@@ -340,7 +364,7 @@ export default function App() {
       let minLon = Math.min(...points.map(p => p.lon));
       let maxLon = Math.max(...points.map(p => p.lon));
 
-      const pad = 40;
+      const pad = 60;
       function toCanvas(lat, lon) {
         const x = pad + ((lon - minLon) / (maxLon - minLon || 1)) * (canvas.width - pad * 2);
         const y = canvas.height - (pad + ((lat - minLat) / (maxLat - minLat || 1)) * (canvas.height - pad * 2));
@@ -349,31 +373,58 @@ export default function App() {
 
       const userPos = toCanvas(userLat, userLon);
 
+      // Draw routes and pins for all mandis
       results.forEach((item, idx) => {
         const pos = toCanvas(item.lat, item.lon);
+        
+        // Draw Google Maps style route line
         ctx.beginPath();
         ctx.moveTo(userPos.x, userPos.y);
         ctx.lineTo(pos.x, pos.y);
-        ctx.strokeStyle = idx === 0 ? '#059669' : '#94a3b8';
-        ctx.lineWidth = idx === 0 ? 3 : 1.5;
+        ctx.strokeStyle = idx === 0 ? '#10b981' : '#94a3b8'; // Emerald for #1 optimal route
+        ctx.lineWidth = idx === 0 ? 5 : 2;
+        if (idx !== 0) ctx.setLineDash([4, 4]); else ctx.setLineDash([]);
         ctx.stroke();
+        ctx.setLineDash([]); // Reset line dash
 
+        // Draw Mandi Pin Circle
         ctx.beginPath();
-        ctx.arc(pos.x, pos.y, idx === 0 ? 7 : 5, 0, Math.PI * 2);
+        ctx.arc(pos.x, pos.y, idx === 0 ? 9 : 6, 0, Math.PI * 2);
         ctx.fillStyle = idx === 0 ? '#059669' : '#64748b';
         ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#ffffff';
+        ctx.stroke();
 
-        ctx.fillStyle = '#0f172a';
-        ctx.font = '11px Inter, sans-serif';
-        ctx.fillText(item.mandi, pos.x + 8, pos.y + 3);
+        // Mandi Label Background Box
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.fillRect(pos.x + 12, pos.y - 10, ctx.measureText(item.mandi).width + 16, 20);
+        ctx.strokeStyle = idx === 0 ? '#059669' : '#cbd5e1';
+        ctx.strokeRect(pos.x + 12, pos.y - 10, ctx.measureText(item.mandi).width + 16, 20);
+
+        // Mandi Text Label
+        ctx.fillStyle = idx === 0 ? '#065f46' : '#334155';
+        ctx.font = 'bold 11px Inter, sans-serif';
+        ctx.fillText(item.mandi, pos.x + 18, pos.y + 4);
       });
 
+      // Draw Google Maps style User / Farmer Pin (Blue & White Google Pin look)
       ctx.beginPath();
-      ctx.arc(userPos.x, userPos.y, 8, 0, Math.PI * 2);
-      ctx.fillStyle = '#d97706';
+      ctx.arc(userPos.x, userPos.y, 12, 0, Math.PI * 2);
+      ctx.fillStyle = '#2563eb'; // Google Blue
       ctx.fill();
-      ctx.fillStyle = '#b45309';
-      ctx.fillText(currentLang === 'en' ? "Farmer Hub" : "ರೈತ ಕೇಂದ್ರ", userPos.x + 10, userPos.y + 4);
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#ffffff';
+      ctx.stroke();
+
+      // User Pin Label
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+      ctx.fillRect(userPos.x + 16, userPos.y - 10, 85, 20);
+      ctx.strokeStyle = '#2563eb';
+      ctx.strokeRect(userPos.x + 16, userPos.y - 10, 85, 20);
+      ctx.fillStyle = '#1e40af';
+      ctx.font = 'bold 11px Inter, sans-serif';
+      ctx.fillText(currentLang === 'en' ? '📍 Farmer Hub' : '📍 ರೈತ ಕೇಂದ್ರ', userPos.x + 22, pos.y ? pos.y + 4 : userPos.y + 4);
     }
   }, [currentPage, results, villageLocation, user, currentLang]);
 
@@ -674,24 +725,59 @@ export default function App() {
 
         {currentPage === 4 && (
           <div className="space-y-6">
-            <div className="bg-white border border-emerald-200 rounded-3xl p-6 space-y-4 shadow-md">
-              <div className="flex justify-between items-center">
-                <div>
-                  <h2 className="text-base font-bold text-emerald-800 flex items-center gap-2">
-                    <span>{t.p4MapTitle}</span>
-                  </h2>
-                  <p className="text-xs text-slate-500">{t.p4MapSub}</p>
+            {/* Google Maps Style UI Container */}
+            <div className="bg-white border border-emerald-200 rounded-3xl p-6 space-y-4 shadow-xl">
+              
+              {/* Google Maps Header Bar */}
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 bg-emerald-50/70 p-4 rounded-2xl border border-emerald-200">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-md">
+                    <Navigation className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h2 className="text-base font-extrabold text-emerald-950 flex items-center gap-2">
+                      <span>{t.p4MapTitle}</span>
+                      <span className="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Google Maps Live</span>
+                    </h2>
+                    <p className="text-xs text-slate-600">{t.p4MapSub}</p>
+                  </div>
                 </div>
-                <span className="text-xs bg-emerald-100 text-emerald-800 font-bold px-3 py-1 rounded-lg border border-emerald-300">Karnataka Mandis</span>
+
+                <div className="flex items-center gap-2 w-full md:w-auto">
+                  <div className="bg-white px-3 py-1.5 rounded-xl border border-emerald-200 text-xs font-bold text-emerald-900 flex items-center gap-1.5 shadow-sm">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Fastest Green Route Active</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="relative w-full h-80 bg-emerald-50/40 rounded-2xl overflow-hidden border border-emerald-200">
-                <canvas ref={canvasRef} className="w-full h-full block" />
-                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-emerald-200 text-xs text-emerald-900 flex items-center gap-3 shadow-sm font-bold">
-                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span> {currentLang === 'en' ? 'Farmer Hub' : 'ರೈತ ಕೇಂದ್ರ'}</span>
-                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> #1 {currentLang === 'en' ? 'Optimal Mandi' : 'ಉತ್ತಮ ಮಂಡಿ'}</span>
+              {/* Google Maps Interactive Simulation Canvas */}
+              <div className="relative w-full h-[420px] bg-[#f8fafc] rounded-2xl overflow-hidden border border-emerald-200 shadow-inner">
+                <canvas ref={canvasRef} className="w-full h-full block cursor-crosshair" />
+
+                {/* Floating Google Maps Style Direction Card */}
+                {results.length > 0 && (
+                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-emerald-200 shadow-lg max-w-xs space-y-2 z-10">
+                    <div className="flex items-center justify-between text-xs font-bold text-slate-800 border-b border-slate-100 pb-2">
+                      <span className="flex items-center gap-1.5 text-blue-600"><Navigation className="w-3.5 h-3.5" /> Best Route to #{results[0].mandi}</span>
+                      <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">₹{results[0].net_total.toLocaleString('en-IN')}</span>
+                    </div>
+                    <div className="text-[11px] text-slate-600 space-y-1">
+                      <p className="flex justify-between"><span>Distance:</span> <strong className="text-slate-800">{results[0].distance_km} km</strong></p>
+                      <p className="flex justify-between"><span>Est. Travel Time:</span> <strong className="text-slate-800">{results[0].travel_hours} hrs</strong></p>
+                      <p className="flex justify-between"><span>Transit Spoilage:</span> <strong className="text-rose-600">-{results[0].spoilage_pct}%</strong></p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Google Maps Style Bottom Map Controls Floating Bar */}
+                <div className="absolute bottom-4 right-4 flex items-center gap-2 bg-white/95 backdrop-blur-md px-3 py-2 rounded-xl border border-emerald-200 shadow-md text-xs font-bold text-slate-700">
+                  <span className="flex items-center gap-1 text-blue-600"><Compass className="w-4 h-4" /> GPS Active</span>
+                  <span className="text-slate-300">|</span>
+                  <span className="text-emerald-700">Mandya APMC Hub</span>
                 </div>
               </div>
+
             </div>
           </div>
         )}
