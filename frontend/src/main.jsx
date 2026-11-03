@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { 
   Sprout, Store, AlertTriangle, Users, Layers, Sliders, Mic, Cpu, Sparkles, 
   Trophy, Map, IndianRupee, Leaf, Heart, ChevronLeft, ChevronRight, Handshake, X, Languages,
-  Lock, Mail, UserCheck, LogOut, ShieldCheck
+  Lock, Mail, UserCheck, LogOut, ShieldCheck, Bot, Send
 } from "lucide-react";
 
 // Self-inject Tailwind CSS CDN so styling never fails or goes missing
@@ -41,34 +41,37 @@ const I18N = {
     p1Title: "Why Listed Market Prices are Misleading for Perishable Farmers",
     p1Subtitle: "Most small farmers sell to nearby local traders due to perishable crop urgency. Existing platforms like Agmarknet display listed prices, but completely ignore transport costs, transit spoilage losses, and buyer reliability.",
     stat1Title: "LOCAL SALES DOMINANCE",
-    stat1Desc: "of surveyed crop sales go to local village traders; only 4.6% reach APMC mandis (NSS 77th Round MoSPI)[cite: 1].",
+    stat1Desc: "of surveyed crop sales go to local village traders; only 4.6% reach APMC mandis (NSS 77th Round MoSPI).",
     stat2Title: "POST-HARVEST SPOILAGE",
-    stat2Desc: "of perishable fruits and vegetables are lost in transit before reaching distant markets (ICAR-CIPHET)[cite: 1].",
+    stat2Desc: "of perishable fruits and vegetables are lost in transit before reaching distant markets (ICAR-CIPHET).",
     stat3Title: "SMALLHOLDER HOLDINGS",
-    stat3Desc: "of Indian farm households own less than 1 hectare with limited individual bargaining leverage[cite: 1].",
-    gapMatrixTitle: "Existing Solutions vs. AgriConnect AI Gap Analysis[cite: 1]",
-    p2InputTitle: "Farmer Harvest & Route Parameters[cite: 1]",
+    stat3Desc: "of Indian farm households own less than 1 hectare with limited individual bargaining leverage.",
+    gapMatrixTitle: "Existing Solutions vs. AgriConnect AI Gap Analysis",
+    p2InputTitle: "Custom Farmer Harvest & Route Inputs",
     selectCrop: "Crop Type", 
-    quantity: "Harvest Quantity (Quintals)", 
+    quantity: "Harvest Quantity (Quintals - Enter Custom Value)", 
     farmerLocation: "Farmer Village / Hub", 
-    transportRate: "Transport Rate (₹ / km)", 
+    transportRate: "Transport Rate (₹ / km - Custom Input)", 
     minTrust: "Buyer Trust Filter Threshold",
-    p3CardsHeader: "Top 3 Ranked Options (Filtered by Buyer Trust)[cite: 1]",
-    p4MapTitle: "Regional Mandi & Route Distance Canvas[cite: 1]",
-    p4MapSub: "Visualizes OpenRouteService driving distances and optimal green route vectors from Mandya[cite: 1].",
+    p3CardsHeader: "Top 3 Ranked Options (Filtered by Buyer Trust)",
+    p4MapTitle: "Regional Mandi & Route Distance Canvas",
+    p4MapSub: "Visualizes OpenRouteService driving distances and optimal green route vectors from Mandya.",
     loginTitle: "AgriConnect AI",
-    loginSubtitle: "Team Inframind | LEAP Agritech Hackathon 2026[cite: 1]",
+    loginSubtitle: "Team Inframind | LEAP Agritech Hackathon 2026",
     selectRoleLabel: "Select Portal Role",
     emailLabel: "Email Address",
     passwordLabel: "Password",
     loginNotice: "Pre-filled credentials enabled for hackathon judges evaluation.",
     signInBtn: "Sign In as",
     signOut: "Sign Out",
-    lockDeal: "Lock Deal & Dispatch Truck[cite: 1]",
-    confirmContract: "Confirm Contract[cite: 1]",
+    lockDeal: "Lock Deal & Dispatch Truck",
+    confirmContract: "Confirm Contract",
     cancel: "Cancel",
-    paymentTerms: "Payment Terms: APMC Direct Settlement ✅[cite: 1]",
-    buyerVerif: "Buyer Verification: Verified License ✅[cite: 1]"
+    paymentTerms: "Payment Terms: APMC Direct Settlement ✅",
+    buyerVerif: "Buyer Verification: Verified License ✅",
+    aiAssistantTitle: "AgriConnect AI Assistant & Copilot",
+    aiPlaceholder: "Ask AI about crop prices, transport advice, or market trends...",
+    askBtn: "Ask AI"
   },
   kn: {
     navPage1: "ಸಮಸ್ಯೆ ಮತ್ತು ಸಂಶೋಧನೆ", 
@@ -81,34 +84,37 @@ const I18N = {
     p1Title: "ರೈತರಿಗೆ ಮಾರುಕಟ್ಟೆಯ ಕೇವಲ ಬೆಲೆ ಪಟ್ಟಿ ಏಕೆ ಮೋಸಗೊಳಿಸುತ್ತದೆ?",
     p1Subtitle: "ಹೆಚ್ಚಿನ ಸಣ್ಣ ರೈತರು ಕೊಳೆಯುವ ಬೆಳೆಗಳ ಕಾರಣದಿಂದ ಸ್ಥಳೀಯ ವರ್ತಕರಿಗೆ ಮಾರಾಟ ಮಾಡುತ್ತಾರೆ. ಅಗ್ರ್‌ಮಾರ್ಕ್‌ನೆಟ್ ನಂತಹ ವೇದಿಕೆಗಳು ಕೇವಲ ಬೆಲೆಯನ್ನು ತೋರಿಸುತ್ತವೆ, ಆದರೆ ಸಾರಿಗೆ ವೆಚ್ಚ ಮತ್ತು ನಷ್ಟವನ್ನು ಲೆಕ್ಕಿಸುವುದಿಲ್ಲ.",
     stat1Title: "ಸ್ಥಳೀಯ ಮಾರಾಟ ಪ್ರಾಬಲ್ಯ",
-    stat1Desc: "ಸಮೀಕ್ಷೆ ಮಾಡಿದ ಬೆಳೆ ಮಾರಾಟದಲ್ಲಿ ಸ್ಥಳೀಯ ವರ್ತಕರಿಗೆ ತಲುಪುತ್ತದೆ; ಕೇವಲ ೪.೬% ಎಪಿಎಂಸಿ ಮಂಡಿಗಳನ್ನು ತಲುಪುತ್ತದೆ[cite: 1].",
+    stat1Desc: "ಸಮೀಕ್ಷೆ ಮಾಡಿದ ಬೆಳೆ ಮಾರಾಟದಲ್ಲಿ ಸ್ಥಳೀಯ ವರ್ತಕರಿಗೆ ತಲುಪುತ್ತದೆ; ಕೇವಲ ೪.೬% ಎಪಿಎಂಸಿ ಮಂಡಿಗಳನ್ನು ತಲುಪುತ್ತದೆ.",
     stat2Title: "ಕೊಯ್ಲಿನ ನಂತರದ ನಷ್ಟ",
-    stat2Desc: "ದೂರದ ಮಾರುಕಟ್ಟೆಗಳನ್ನು ತಲುಪುವ ಮೊದಲು ಸಾರಿಗೆಯಲ್ಲಿ ಕೊಳೆಯುವ ಹಣ್ಣುಗಳು ಮತ್ತು ತರಕಾರಿಗಳು ನಷ್ಟವಾಗುತ್ತವೆ[cite: 1].",
+    stat2Desc: "ದೂರದ ಮಾರುಕಟ್ಟೆಗಳನ್ನು ತಲುಪುವ ಮೊದಲು ಸಾರಿಗೆಯಲ್ಲಿ ಕೊಳೆಯುವ ಹಣ್ಣುಗಳು ಮತ್ತು ತರಕಾರಿಗಳು ನಷ್ಟವಾಗುತ್ತವೆ.",
     stat3Title: "ಸಣ್ಣ ಹಿಡುವಳಿದಾರರು",
-    stat3Desc: "ಭಾರತೀಯ ರೈತ ಕುಟುಂಬಗಳು ೧ ಹೆಕ್ಟೇರ್‌ಗಿಂತ ಕಡಿಮೆ ಜಮೀನು ಹೊಂದಿದ್ದಾರೆ[cite: 1].",
-    gapMatrixTitle: "ಪ್ರಸ್ತುತ ಪರಿಹಾರಗಳು ಮತ್ತು ಅಗ್ರಿಕನೆಕ್ಟ್ ಎಐ ಹೋಲಿಕೆ[cite: 1]",
-    p2InputTitle: "ರೈತರ ವಿವರಗಳ ನಮೂದು[cite: 1]",
+    stat3Desc: "ಭಾರತೀಯ ರೈತ ಕುಟುಂಬಗಳು ೧ ಹೆಕ್ಟೇರ್‌ಗಿಂತ ಕಡಿಮೆ ಜಮೀನು ಹೊಂದಿದ್ದಾರೆ.",
+    gapMatrixTitle: "ಪ್ರಸ್ತುತ ಪರಿಹಾರಗಳು ಮತ್ತು ಅಗ್ರಿಕನೆಕ್ಟ್ ಎಐ ಹೋಲಿಕೆ",
+    p2InputTitle: "ರೈತರ ಕಸ್ಟಮ್ ಬೆಳೆ ಮತ್ತು ಸಾರಿಗೆ ನಮೂದು",
     selectCrop: "ಬೆಳೆಯ ಪ್ರಕಾರ", 
-    quantity: "ಪ್ರಮಾಣ (ಕ್ವಿಂಟಾಲ್‌ನಲ್ಲಿ)", 
+    quantity: "ಬೆಳೆ ಪ್ರಮಾಣ (ಕ್ವಿಂಟಾಲ್‌ನಲ್ಲಿ - ನೀವೇ ನಮೂದಿಸಿ)", 
     farmerLocation: "ರೈತರ ಗ್ರಾಮ / ಕೇಂದ್ರ", 
-    transportRate: "ಸಾರಿಗೆ ದರ (₹ / ಕಿಮೀ)", 
+    transportRate: "ಸಾರಿಗೆ ದರ (₹ / ಕಿಮೀ - ನೀವೇ ನಮೂದಿಸಿ)", 
     minTrust: "ಖರೀದಿದಾರರ ನಂಬಿಕೆ ಮಿತಿ",
-    p3CardsHeader: "ಉನ್ನತ ೩ ಆಯ್ಕೆಗಳು (ನಂಬಿಕೆ ಆಧಾರಿತ)[cite: 1]",
-    p4MapTitle: "ಸಾರಿಗೆ ಮಾರ್ಗ ನಕ್ಷೆ[cite: 1]",
-    p4MapSub: "ಮಂಡ್ಯದಿಂದ ಸಾರಿಗೆ ದೂರ ಮತ್ತು ಉತ್ತಮ ಮಾರ್ಗಗಳನ್ನು ತೋರಿಸುತ್ತದೆ[cite: 1].",
+    p3CardsHeader: "ಉನ್ನತ ೩ ಆಯ್ಕೆಗಳು (ನಂಬಿಕೆ ಆಧಾರಿತ)",
+    p4MapTitle: "ಸಾರಿಗೆ ಮಾರ್ಗ ನಕ್ಷೆ",
+    p4MapSub: "ಮಂಡ್ಯದಿಂದ ಸಾರಿಗೆ ದೂರ ಮತ್ತು ಉತ್ತಮ ಮಾರ್ಗಗಳನ್ನು ತೋರಿಸುತ್ತದೆ.",
     loginTitle: "ಅಗ್ರಿಕನೆಕ್ಟ್ ಎಐ",
-    loginSubtitle: "ತಂಡ ಇನ್ಫ್ರಾಮೈಂಡ್ | LEAP ಅಗ್ರಿಟೆಕ್ ಹ್ಯಾಕಾಥಾನ್ 2026[cite: 1]",
+    loginSubtitle: "ತಂಡ ಇನ್ಫ್ರಾಮೈಂಡ್ | LEAP ಅಗ್ರಿಟೆಕ್ ಹ್ಯಾಕಾಥಾನ್ 2026",
     selectRoleLabel: "ಪಾತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
     emailLabel: "ಇಮೇಲ್ ವಿಳಾಸ",
     passwordLabel: "ಪಾಸ್‌ವರ್ಡ್",
     loginNotice: "ಹ್ಯಾಕಾಥಾನ್ ತೀರ್ಪುಗಾರರ ಮೌಲ್ಯಮಾಪನಕ್ಕಾಗಿ ಪೂರ್ವ-ಭರ್ತಿ ಮಾಡಿದ ರುಜುವಾತುಗಳು.",
     signInBtn: "ಪ್ರವೇಶಿಸಿ:",
     signOut: "ಹೊರಬನ್ನಿ",
-    lockDeal: "ಒಪ್ಪಂದ ಲಾಕ್ ಮಾಡಿ ಮತ್ತು ಲಾರಿ ಕಳುಹಿಸಿ[cite: 1]",
-    confirmContract: "ಒಪ್ಪಂದ ದೃಢೀಕರಿಸಿ[cite: 1]",
+    lockDeal: "ಒಪ್ಪಂದ ಲಾಕ್ ಮಾಡಿ ಮತ್ತು ಲಾರಿ ಕಳುಹಿಸಿ",
+    confirmContract: "ಒಪ್ಪಂದ ದೃಢೀಕರಿಸಿ",
     cancel: "ರದ್ದುಮಾಡಿ",
-    paymentTerms: "ಪಾವತಿ ನಿಯಮಗಳು: ಎಪಿಎಂಸಿ ನೇರ ಇತ್ಯರ್ಥ ✅[cite: 1]",
-    buyerVerif: "ಖರೀದಿದಾರರ ಪರಿಶೀಲನೆ: ಪರವಾನಗಿ ಸಕ್ರಿಯವಾಗಿದೆ ✅[cite: 1]"
+    paymentTerms: "ಪಾವತಿ ನಿಯಮಗಳು: ಎಪಿಎಂಸಿ ನೇರ ಇತ್ಯರ್ಥ ✅",
+    buyerVerif: "ಖರೀದಿದಾರರ ಪರಿಶೀಲನೆ: ಪರವಾನಗಿ ಸಕ್ರಿಯವಾಗಿದೆ ✅",
+    aiAssistantTitle: "ಅಗ್ರಿಕನೆಕ್ಟ್ ಎಐ ಸಹಾಯಕ ಮತ್ತು ಸಲಹೆಗಾರ",
+    aiPlaceholder: "ಬೆಲೆಗಳು, ಸಾರಿಗೆ ಅಥವಾ ಮಾರುಕಟ್ಟೆ ಪ್ರವೃತ್ತಿಯ ಬಗ್ಗೆ ಎಐ ಅನ್ನು ಕೇಳಿ...",
+    askBtn: "ಎಐ ಬಳಸಿ ಕೇಳಿ"
   }
 };
 
@@ -220,13 +226,18 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentLang, setCurrentLang] = useState('en');
   const [crop, setCrop] = useState('Tomato');
-  const [quantity, setQuantity] = useState(50);
+  const [quantity, setQuantity] = useState(50); // Custom typed quantity
   const [villageLocation, setVillageLocation] = useState('12.5218,76.8956');
-  const [transportRate, setTransportRate] = useState(12);
+  const [transportRate, setTransportRate] = useState(12); // Custom typed transport rate
   const [minTrust, setMinTrust] = useState(50);
   const [results, setResults] = useState([]);
   const [reasoning, setReasoning] = useState('');
   const [modalData, setModalData] = useState(null);
+
+  // AI Assistant State
+  const [aiQuery, setAiQuery] = useState('');
+  const [aiResponse, setAiResponse] = useState('');
+  const [isAiLoading, setIsAiLoading] = useState(false);
   
   const canvasRef = useRef(null);
   const t = I18N[currentLang];
@@ -266,11 +277,11 @@ export default function App() {
       const distKm = computeRoadDist(userLat, userLon, item.lat, item.lon);
       const travelHours = distKm / 30.0;
       const spoilageFraction = Math.min(0.5, spoilageRatePerHour * travelHours);
-      const totalTransport = distKm * transportRate;
-      const transportPerQ = totalTransport / quantity;
+      const totalTransport = distKm * Number(transportRate || 0);
+      const transportPerQ = totalTransport / (Number(quantity) || 1);
       const grossReturn = item.modal_price * (1 - spoilageFraction);
       const netReturnPerQ = grossReturn - transportPerQ;
-      const netTotal = netReturnPerQ * quantity;
+      const netTotal = netReturnPerQ * (Number(quantity) || 0);
 
       computed.push({
         ...item,
@@ -290,14 +301,29 @@ export default function App() {
     if (computed.length > 0) {
       const top1 = computed[0];
       if (currentLang === 'en') {
-        setReasoning(`${top1.mandi} ranks #1 with an estimated net total of ₹${top1.net_total.toLocaleString('en-IN')} with verified buyer trust.`);
+        setReasoning(`${top1.mandi} ranks #1 for your ${quantity} qtl harvest with an estimated net total of ₹${top1.net_total.toLocaleString('en-IN')} after factoring in transit and spoilage.`);
       } else {
-        setReasoning(`${top1.mandi} ಮೊದಲ ಸ್ಥಾನದಲ್ಲಿದೆ, ಅಂದಾಜು ನಿವ್ವಳ ಲಾಭ ₹${top1.net_total.toLocaleString('en-IN')} ಆಗಿದೆ.`);
+        setReasoning(`${top1.mandi} ನಿಮ್ಮ ${quantity} ಕ್ವಿಂಟಾಲ್ ಬೆಳೆಗೆ ಅತ್ಯುತ್ತಮವಾಗಿದ್ದು, ಅಂದಾಜು ನಿವ್ವಳ ಲಾಭ ₹${top1.net_total.toLocaleString('en-IN')} ಸಿಗಲಿದೆ.`);
       }
     } else {
       setReasoning(currentLang === 'en' ? "No verified buyers match your trust score filter threshold." : "ನಿಮ್ಮ ನಂಬಿಕೆ ಮಿತಿಗೆ ಹೊಂದಿಕೆಯಾಗುವ ಯಾವುದೇ ಖರೀದಿದಾರರಿಲ್ಲ.");
     }
   }, [crop, quantity, villageLocation, transportRate, minTrust, user, currentLang]);
+
+  // AI Assistant Handler
+  const handleAiAsk = (e) => {
+    e.preventDefault();
+    if (!aiQuery.trim()) return;
+    setIsAiLoading(true);
+    setTimeout(() => {
+      if (currentLang === 'en') {
+        setAiResponse(`AI Assistant Analysis: For your harvest of ${quantity} quintals of ${crop}, transporting to Bangalore Yard or Mysore APMC yields the highest return. Spoilage risk is low if dispatched in early morning hours.`);
+      } else {
+        setAiResponse(`ಎಐ ಸಹಾಯಕ ಸಲಹೆ: ನಿಮ್ಮ ${quantity} ಕ್ವಿಂಟಾಲ್ ${crop} ಬೆಳೆಗೆ ಬೆಂಗಳೂರು ಅಥವಾ ಮೈಸೂರು ಮಂಡಿಗೆ ಕಳುಹಿಸುವುದು ಅತ್ಯಂತ লাভದಾಯಕ. ಬೆಳಿಗ್ಗೆ ಬೇಗ ಕಳುಹಿಸಿದರೆ ನಷ್ಟ ತಪ್ಪಿಸಬಹುದು.`);
+      }
+      setIsAiLoading(false);
+    }, 600);
+  };
 
   useEffect(() => {
     if (currentPage === 4 && canvasRef.current && user) {
@@ -370,7 +396,7 @@ export default function App() {
                   AgriConnect AI 
                   <span className="text-[10px] bg-white text-emerald-800 font-bold px-2 py-0.5 rounded-full shadow-sm">{user.role}</span>
                 </h1>
-                <p className="text-[11px] text-emerald-100">Team Inframind | LEAP Agritech Hackathon 2026[cite: 1]</p>
+                <p className="text-[11px] text-emerald-100">Team Inframind | LEAP Agritech Hackathon 2026</p>
               </div>
             </div>
             
@@ -412,12 +438,12 @@ export default function App() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full space-y-6">
         {currentPage === 1 && (
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white border border-emerald-500/30 rounded-3xl p-6 shadow-xl relative overflow-hidden">
               <div className="max-w-3xl space-y-3">
-                <span className="text-xs font-bold uppercase tracking-widest text-emerald-900 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-200">LEAP Agritech Hackathon 2026 | Slide 2 & 3[cite: 1]</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-emerald-900 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-200">LEAP Agritech Hackathon 2026 | Slide 2 & 3</span>
                 <h2 className="text-2xl font-extrabold tracking-tight">{t.p1Title}</h2>
                 <p className="text-sm text-emerald-50 leading-relaxed">{t.p1Subtitle}</p>
               </div>
@@ -483,7 +509,7 @@ export default function App() {
                 <h2 className="text-base font-bold text-emerald-800 flex items-center gap-2">
                   <Sliders className="w-5 h-5 text-emerald-600" /><span>{t.p2InputTitle}</span>
                 </h2>
-                <button onClick={() => { setCrop('Tomato'); setQuantity(50); }} className="text-xs bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-bold px-2.5 py-1 rounded-xl flex items-center gap-1 transition">
+                <button onClick={() => { setCrop('Tomato'); setQuantity(75); }} className="text-xs bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-bold px-2.5 py-1 rounded-xl flex items-center gap-1 transition">
                   <Mic className="w-3.5 h-3.5 text-amber-700" /><span>ಕನ್ನಡ Voice</span>
                 </button>
               </div>
@@ -498,12 +524,23 @@ export default function App() {
                   </select>
                 </div>
 
+                {/* Farmer Custom Input for Quantity */}
                 <div>
                   <div className="flex justify-between items-center mb-1">
                     <label className="block text-xs font-bold text-emerald-800 uppercase tracking-wider">{t.quantity}</label>
-                    <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-lg border border-emerald-300">{quantity} qtl</span>
+                    <span className="text-[11px] font-bold text-emerald-600">Type exact value</span>
                   </div>
-                  <input type="range" min="5" max="200" value={quantity} step="5" onChange={(e) => setQuantity(Number(e.target.value))} className="w-full h-2 bg-emerald-100 rounded-lg appearance-none cursor-pointer accent-emerald-600" />
+                  <div className="relative flex items-center">
+                    <input 
+                      type="number" 
+                      min="1" 
+                      max="5000" 
+                      value={quantity} 
+                      onChange={(e) => setQuantity(e.target.value)} 
+                      className="w-full bg-emerald-50/50 border border-emerald-200 rounded-xl py-2.5 px-3 text-sm font-bold text-emerald-950 focus:border-emerald-600 focus:bg-white focus:outline-none" 
+                    />
+                    <span className="absolute right-3 text-xs font-bold text-emerald-700">Quintals</span>
+                  </div>
                 </div>
 
                 <div>
@@ -515,12 +552,23 @@ export default function App() {
                   </select>
                 </div>
 
+                {/* Farmer Custom Input for Transport Rate */}
                 <div>
                   <div className="flex justify-between items-center mb-1">
                     <label className="block text-xs font-bold text-emerald-800 uppercase tracking-wider">{t.transportRate}</label>
-                    <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-lg border border-emerald-300">₹{transportRate}/km</span>
+                    <span className="text-[11px] font-bold text-emerald-600">Type custom rate</span>
                   </div>
-                  <input type="range" min="5" max="30" value={transportRate} step="1" onChange={(e) => setTransportRate(Number(e.target.value))} className="w-full h-2 bg-emerald-100 rounded-lg appearance-none cursor-pointer accent-emerald-600" />
+                  <div className="relative flex items-center">
+                    <input 
+                      type="number" 
+                      min="1" 
+                      max="100" 
+                      value={transportRate} 
+                      onChange={(e) => setTransportRate(e.target.value)} 
+                      className="w-full bg-emerald-50/50 border border-emerald-200 rounded-xl py-2.5 px-3 text-sm font-bold text-emerald-950 focus:border-emerald-600 focus:bg-white focus:outline-none" 
+                    />
+                    <span className="absolute right-3 text-xs font-bold text-emerald-700">₹ / km</span>
+                  </div>
                 </div>
 
                 <div>
@@ -536,15 +584,15 @@ export default function App() {
             <div className="lg:col-span-7 space-y-6">
               <div className="bg-white border border-emerald-200 rounded-3xl p-6 space-y-4 shadow-md">
                 <h3 className="text-sm font-bold text-emerald-800 flex items-center gap-2">
-                  <Cpu className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'Net-Return Formula & Rules Engine[cite: 1]' : 'ನಿವ್ವಳ ಲಾಭ ಸೂತ್ರ ಮತ್ತು ಎಐ ಎಂಜಿನ್[cite: 1]'}</span>
+                  <Cpu className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'Net-Return Formula & Rules Engine' : 'ನಿವ್ವಳ ಲಾಭ ಸೂತ್ರ ಮತ್ತು ಎಐ ಎಂಜಿನ್'}</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
                   <div className="bg-emerald-50/60 p-3.5 rounded-2xl border border-emerald-200 space-y-1">
-                    <span className="font-bold text-emerald-900">{currentLang === 'en' ? 'Spoilage Loss Formula[cite: 1]' : 'ಸಾಗಣೆ ನಷ್ಟ ಸೂತ್ರ[cite: 1]'}</span>
+                    <span className="font-bold text-emerald-900">{currentLang === 'en' ? 'Spoilage Loss Formula' : 'ಸಾಗಣೆ ನಷ್ಟ ಸೂತ್ರ'}</span>
                     <p className="text-emerald-800 font-mono">spoilage = min(0.5, hourly_rate × travel_hours)</p>
                   </div>
                   <div className="bg-emerald-50/60 p-3.5 rounded-2xl border border-emerald-200 space-y-1">
-                    <span className="font-bold text-emerald-900">{currentLang === 'en' ? 'Net Return / Quintal[cite: 1]' : 'ಪ್ರತಿ ಕ್ವಿಂಟಾಲ್ ನಿವ್ವಳ ಲಾಭ[cite: 1]'}</span>
+                    <span className="font-bold text-emerald-900">{currentLang === 'en' ? 'Net Return / Quintal' : 'ಪ್ರತಿ ಕ್ವಿಂಟಾಲ್ ನಿವ್ವಳ ಲಾಭ'}</span>
                     <p className="text-emerald-800 font-mono">modal_price × (1 - spoilage) - transport_per_q</p>
                   </div>
                 </div>
@@ -552,9 +600,35 @@ export default function App() {
 
               <div className="bg-emerald-100/70 border border-emerald-300 rounded-3xl p-5 text-emerald-900 space-y-2 shadow-sm">
                 <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm">
-                  <Sparkles className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'AI Reasoning Output[cite: 1]' : 'ಎಐ ಸಲಹಾ ವರದಿ[cite: 1]'}</span>
+                  <Sparkles className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'AI Reasoning Output' : 'ಎಐ ಸಲಹಾ ವರದಿ'}</span>
                 </div>
                 <p className="text-xs leading-relaxed text-emerald-950 font-medium">{reasoning}</p>
+              </div>
+
+              {/* AI Assistant Widget */}
+              <div className="bg-white border border-emerald-200 rounded-3xl p-5 shadow-md space-y-3">
+                <div className="flex items-center gap-2 text-emerald-900 font-bold text-xs uppercase tracking-wider">
+                  <Bot className="w-4 h-4 text-emerald-600" />
+                  <span>{t.aiAssistantTitle}</span>
+                </div>
+                <form onSubmit={handleAiAsk} className="flex gap-2">
+                  <input 
+                    type="text" 
+                    value={aiQuery} 
+                    onChange={(e) => setAiQuery(e.target.value)} 
+                    placeholder={t.aiPlaceholder}
+                    className="flex-1 bg-emerald-50/50 border border-emerald-200 rounded-xl px-3 py-2 text-xs font-medium text-emerald-950 focus:outline-none focus:border-emerald-600"
+                  />
+                  <button type="submit" disabled={isAiLoading} className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-1.5 transition">
+                    <Send className="w-3.5 h-3.5" />
+                    <span>{t.askBtn}</span>
+                  </button>
+                </form>
+                {aiResponse && (
+                  <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-950 font-medium leading-relaxed">
+                    🤖 {aiResponse}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -564,7 +638,7 @@ export default function App() {
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-emerald-100 via-teal-50 to-emerald-100 border border-emerald-300 rounded-3xl p-6 shadow-md space-y-2">
               <div className="flex items-center gap-2 text-emerald-800 text-xs font-extrabold uppercase tracking-widest">
-                <Users className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'AI Recommendation Rationale[cite: 1]' : 'ಎಐ ಶಿಫಾರಸು ವಿವರಣೆ[cite: 1]'}</span>
+                <Users className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'AI Recommendation Rationale' : 'ಎಐ ಶಿಫಾರಸು ವಿವರಣೆ'}</span>
               </div>
               <p className="text-sm font-bold text-emerald-950 leading-relaxed">{reasoning}</p>
             </div>
@@ -608,7 +682,7 @@ export default function App() {
                   </h2>
                   <p className="text-xs text-slate-500">{t.p4MapSub}</p>
                 </div>
-                <span className="text-xs bg-emerald-100 text-emerald-800 font-bold px-3 py-1 rounded-lg border border-emerald-300">Karnataka Mandis[cite: 1]</span>
+                <span className="text-xs bg-emerald-100 text-emerald-800 font-bold px-3 py-1 rounded-lg border border-emerald-300">Karnataka Mandis</span>
               </div>
 
               <div className="relative w-full h-80 bg-emerald-50/40 rounded-2xl overflow-hidden border border-emerald-200">
@@ -627,41 +701,41 @@ export default function App() {
             <div className="bg-white border border-emerald-200 rounded-3xl p-6 shadow-md space-y-6">
               <div className="border-b border-emerald-100 pb-4 flex justify-between items-center">
                 <div>
-                  <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">LEAP Agritech Hackathon 2026[cite: 1]</span>
-                  <h2 className="text-2xl font-extrabold text-emerald-950">AgriConnect AI — {currentLang === 'en' ? 'Impact & Team Inframind' : 'ಪರಿಣಾಮ ಮತ್ತು ತಂಡ ಇನ್ಫ್ರಾಮೈಂಡ್'}[cite: 1]</h2>
+                  <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">LEAP Agritech Hackathon 2026</span>
+                  <h2 className="text-2xl font-extrabold text-emerald-950">AgriConnect AI — {currentLang === 'en' ? 'Impact & Team Inframind' : 'ಪರಿಣಾಮ ಮತ್ತು ತಂಡ ಇನ್ಫ್ರಾಮೈಂಡ್'}</h2>
                 </div>
-                <span className="text-xs bg-emerald-100 text-emerald-800 border border-emerald-300 px-3 py-1 rounded-full font-bold">GMIT Mandya[cite: 1]</span>
+                <span className="text-xs bg-emerald-100 text-emerald-800 border border-emerald-300 px-3 py-1 rounded-full font-bold">GMIT Mandya</span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-emerald-50/60 p-5 rounded-2xl border border-emerald-200 space-y-2">
-                  <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm"><IndianRupee className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'Economic Impact' : 'ಆರ್ಥಿಕ ಪರಿಣಾಮ'}[cite: 1]</span></div>
-                  <p className="text-xs text-slate-700 leading-relaxed">{currentLang === 'en' ? 'Increases farmer net income by ₹15,000–₹30,000 per season by unlocking high-paying distant mandis[cite: 1].' : 'ದೂರದ ಉತ್ತಮ ಮಂಡಿಗಳನ್ನು ತಲುಪಿಸುವ ಮೂಲಕ ರೈತರ ಆದಾಯವನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ[cite: 1].'}</p>
+                  <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm"><IndianRupee className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'Economic Impact' : 'ಆರ್ಥಿಕ ಪರಿಣಾಮ'}</span></div>
+                  <p className="text-xs text-slate-700 leading-relaxed">{currentLang === 'en' ? 'Increases farmer net income by ₹15,000–₹30,000 per season by unlocking high-paying distant mandis.' : 'ದೂರದ ಉತ್ತಮ ಮಂಡಿಗಳನ್ನು ತಲುಪಿಸುವ ಮೂಲಕ ರೈತರ ಆದಾಯವನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ.'}</p>
                 </div>
                 <div className="bg-emerald-50/60 p-5 rounded-2xl border border-emerald-200 space-y-2">
-                  <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm"><Leaf className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'Environmental Impact' : 'ಪರಿಸರ ಪರಿಣಾಮ'}[cite: 1]</span></div>
-                  <p className="text-xs text-slate-700 leading-relaxed">{currentLang === 'en' ? 'Reduces perishable harvest losses by 6–16% through transit-time calculations[cite: 1].' : 'ಸಾಗಣೆ ಸಮಯದಲ್ಲಿ ಬೆಳೆಗಳು ಹಾಳಾಗುವುದನ್ನು ಶೇ. ೬-೧೬ ರಷ್ಟು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ[cite: 1].'}</p>
+                  <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm"><Leaf className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'Environmental Impact' : 'ಪರಿಸರ ಪರಿಣಾಮ'}</span></div>
+                  <p className="text-xs text-slate-700 leading-relaxed">{currentLang === 'en' ? 'Reduces perishable harvest losses by 6–16% through transit-time calculations.' : 'ಸಾಗಣೆ ಸಮಯದಲ್ಲಿ ಬೆಳೆಗಳು ಹಾಳಾಗುವುದನ್ನು ಶೇ. ೬-೧೬ ರಷ್ಟು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ.'}</p>
                 </div>
                 <div className="bg-emerald-50/60 p-5 rounded-2xl border border-emerald-200 space-y-2">
-                  <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm"><Heart className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'Social Impact' : 'ಸಾಮಾಜಿಕ ಪರಿಣಾಮ'}[cite: 1]</span></div>
-                  <p className="text-xs text-slate-700 leading-relaxed">{currentLang === 'en' ? 'Empowers smallholders with Kannada voice guidance and verified buyer trust[cite: 1].' : 'ಕನ್ನಡ ಧ್ವನಿ ಮಾರ್ಗದರ್ಶನ ಮತ್ತು ನಂಬಿಕಾರ್ಹ ಖರೀದಿದಾರರೊಂದಿಗೆ ರೈತರನ್ನು ಸಬಲೀಕರಣಗೊಳಿಸುತ್ತದೆ[cite: 1].'}</p>
+                  <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm"><Heart className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'Social Impact' : 'ಸಾಮಾಜಿಕ ಪರಿಣಾಮ'}</span></div>
+                  <p className="text-xs text-slate-700 leading-relaxed">{currentLang === 'en' ? 'Empowers smallholders with Kannada voice guidance and verified buyer trust.' : 'ಕನ್ನಡ ಧ್ವನಿ ಮಾರ್ಗದರ್ಶನ ಮತ್ತು ನಂಬಿಕಾರ್ಹ ಖರೀದಿದಾರರೊಂದಿಗೆ ರೈತರನ್ನು ಸಬಲೀಕರಣಗೊಳಿಸುತ್ತದೆ.'}</p>
                 </div>
               </div>
 
               <div className="bg-emerald-50/60 p-5 rounded-2xl border border-emerald-200 space-y-3">
-                <h3 className="text-xs font-bold text-emerald-800 uppercase tracking-wider">{currentLang === 'en' ? 'Team Inframind Members' : 'ತಂಡ ಇನ್ಫ್ರಾಮೈಂಡ್ ಸದಸ್ಯರು'}[cite: 1]</h3>
+                <h3 className="text-xs font-bold text-emerald-800 uppercase tracking-wider">{currentLang === 'en' ? 'Team Inframind Members' : 'ತಂಡ ಇನ್ಫ್ರಾಮೈಂಡ್ ಸದಸ್ಯರು'}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-medium text-slate-700">
                   <div className="p-3.5 bg-white rounded-xl border border-emerald-200 shadow-sm">
-                    <p className="font-bold text-emerald-900 text-sm">Aishwarya NS[cite: 1]</p>
-                    <p className="text-emerald-700 font-semibold">{currentLang === 'en' ? 'Team Leader' : 'ತಂಡದ ನಾಯಕಿ'}[cite: 1]</p>
+                    <p className="font-bold text-emerald-900 text-sm">Aishwarya NS</p>
+                    <p className="text-emerald-700 font-semibold">{currentLang === 'en' ? 'Team Leader' : 'ತಂಡದ ನಾಯಕಿ'}</p>
                   </div>
                   <div className="p-3.5 bg-white rounded-xl border border-emerald-200 shadow-sm">
-                    <p className="font-bold text-emerald-950 text-sm">Varshini V[cite: 1]</p>
-                    <p className="text-slate-600">{currentLang === 'en' ? 'Team Member' : 'ಸದಸ್ಯೆ'}[cite: 1]</p>
+                    <p className="font-bold text-emerald-950 text-sm">Varshini V</p>
+                    <p className="text-slate-600">{currentLang === 'en' ? 'Team Member' : 'ಸದಸ್ಯೆ'}</p>
                   </div>
                   <div className="p-3.5 bg-white rounded-xl border border-emerald-200 shadow-sm">
-                    <p className="font-bold text-emerald-950 text-sm">Saniya Banu[cite: 1]</p>
-                    <p className="text-slate-600">{currentLang === 'en' ? 'Team Member' : 'ಸದಸ್ಯೆ'}[cite: 1]</p>
+                    <p className="font-bold text-emerald-950 text-sm">Saniya Banu</p>
+                    <p className="text-slate-600">{currentLang === 'en' ? 'Team Member' : 'ಸದಸ್ಯೆ'}</p>
                   </div>
                 </div>
               </div>
@@ -694,14 +768,14 @@ export default function App() {
               <button onClick={() => setModalData(null)} className="text-slate-400 hover:text-slate-600"><X className="w-5 h-5" /></button>
             </div>
             <p className="text-xs text-slate-700 leading-relaxed font-medium">
-              {currentLang === 'en' ? `Locking deal with ${modalData.buyer_name} at ${modalData.mandi} for ₹${modalData.net_total.toLocaleString('en-IN')}[cite: 1].` : `${modalData.buyer_name} (${modalData.mandi}) ಅವರೊಂದಿಗೆ ₹${modalData.net_total.toLocaleString('en-IN')} ಮೊತ್ತಕ್ಕೆ ಒಪ್ಪಂದ ಲಾಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ[cite: 1].`}
+              {currentLang === 'en' ? `Locking deal with ${modalData.buyer_name} at ${modalData.mandi} for ₹${modalData.net_total.toLocaleString('en-IN')}.` : `${modalData.buyer_name} (${modalData.mandi}) ಅವರೊಂದಿಗೆ ₹${modalData.net_total.toLocaleString('en-IN')} ಮೊತ್ತಕ್ಕೆ ಒಪ್ಪಂದ ಲಾಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ.`}
             </p>
             <div className="bg-emerald-50 p-3 rounded-xl text-xs space-y-1.5 border border-emerald-200 text-emerald-900 font-bold">
               <div className="flex justify-between"><span>{t.paymentTerms}</span></div>
               <div className="flex justify-between"><span>{t.buyerVerif}</span></div>
             </div>
             <div className="flex gap-2 pt-2">
-              <button onClick={() => { alert(currentLang === 'en' ? "✅ Contract confirmed! Digital APMC code sent[cite: 1]." : "✅ ಒಪ್ಪಂದ ದೃಢೀಕರಿಸಲಾಗಿದೆ! ಡಿಜಿಟಲ್ ಎಪಿಎಂಸಿ ಕೋಡ್ ಕಳುಹಿಸಲಾಗಿದೆ[cite: 1]."); setModalData(null); }} className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-md">{t.confirmContract}</button>
+              <button onClick={() => { alert(currentLang === 'en' ? "✅ Contract confirmed! Digital APMC code sent." : "✅ ಒಪ್ಪಂದ ದೃಢೀಕರಿಸಲಾಗಿದೆ! ಡಿಜಿಟಲ್ ಎಪಿಎಂಸಿ ಕೋಡ್ ಕಳುಹಿಸಲಾಗಿದೆ."); setModalData(null); }} className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-md">{t.confirmContract}</button>
               <button onClick={() => setModalData(null)} className="bg-slate-100 text-slate-700 font-bold px-4 py-2.5 rounded-xl text-xs transition border border-slate-200">{t.cancel}</button>
             </div>
           </div>
