@@ -325,20 +325,30 @@ export default function App() {
     }, 600);
   };
 
-  // Google Maps Simulator Canvas Rendering (Page 4)
+  // Google Maps Canvas Fix: Ensures canvas renders properly on tab mount
   useEffect(() => {
-    if (currentPage === 4 && canvasRef.current && user) {
+    if (currentPage !== 4 || !user) return;
+
+    const renderMap = () => {
       const canvas = canvasRef.current;
+      if (!canvas) return;
+
+      const parentWidth = canvas.parentElement?.clientWidth || 600;
+      const parentHeight = canvas.parentElement?.clientHeight || 420;
+
+      canvas.width = parentWidth;
+      canvas.height = parentHeight;
+
       const ctx = canvas.getContext('2d');
-      canvas.width = canvas.parentElement.clientWidth;
-      canvas.height = canvas.parentElement.clientHeight;
+      if (!ctx) return;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // 1. Draw Google Maps style background (Soft road grid & green terrain patches)
-      ctx.fillStyle = '#f0fdf4'; // Light green-tinted map background
+      // 1. Google Maps style background (Soft road grid & green terrain)
+      ctx.fillStyle = '#f0fdf4';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Draw subtle road grid lines (Google Maps style)
+      // Road grid
       ctx.strokeStyle = '#e2e8f0';
       ctx.lineWidth = 1;
       const gridSize = 40;
@@ -349,7 +359,7 @@ export default function App() {
         ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
       }
 
-      // Draw a simulated river / highway curve (Google Maps blue/gray aesthetic)
+      // Simulated river / highway curve
       ctx.beginPath();
       ctx.moveTo(0, canvas.height * 0.3);
       ctx.bezierCurveTo(canvas.width * 0.4, canvas.height * 0.1, canvas.width * 0.6, canvas.height * 0.8, canvas.width, canvas.height * 0.5);
@@ -373,21 +383,19 @@ export default function App() {
 
       const userPos = toCanvas(userLat, userLon);
 
-      // Draw routes and pins for all mandis
+      // Draw routes and pins
       results.forEach((item, idx) => {
         const pos = toCanvas(item.lat, item.lon);
         
-        // Draw Google Maps style route line
         ctx.beginPath();
         ctx.moveTo(userPos.x, userPos.y);
         ctx.lineTo(pos.x, pos.y);
-        ctx.strokeStyle = idx === 0 ? '#10b981' : '#94a3b8'; // Emerald for #1 optimal route
+        ctx.strokeStyle = idx === 0 ? '#10b981' : '#94a3b8';
         ctx.lineWidth = idx === 0 ? 5 : 2;
         if (idx !== 0) ctx.setLineDash([4, 4]); else ctx.setLineDash([]);
         ctx.stroke();
-        ctx.setLineDash([]); // Reset line dash
+        ctx.setLineDash([]);
 
-        // Draw Mandi Pin Circle
         ctx.beginPath();
         ctx.arc(pos.x, pos.y, idx === 0 ? 9 : 6, 0, Math.PI * 2);
         ctx.fillStyle = idx === 0 ? '#059669' : '#64748b';
@@ -396,36 +404,40 @@ export default function App() {
         ctx.strokeStyle = '#ffffff';
         ctx.stroke();
 
-        // Mandi Label Background Box
         ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
         ctx.fillRect(pos.x + 12, pos.y - 10, ctx.measureText(item.mandi).width + 16, 20);
         ctx.strokeStyle = idx === 0 ? '#059669' : '#cbd5e1';
         ctx.strokeRect(pos.x + 12, pos.y - 10, ctx.measureText(item.mandi).width + 16, 20);
 
-        // Mandi Text Label
         ctx.fillStyle = idx === 0 ? '#065f46' : '#334155';
         ctx.font = 'bold 11px Inter, sans-serif';
         ctx.fillText(item.mandi, pos.x + 18, pos.y + 4);
       });
 
-      // Draw Google Maps style User / Farmer Pin (Blue & White Google Pin look)
+      // Draw Farmer Blue Pin
       ctx.beginPath();
       ctx.arc(userPos.x, userPos.y, 12, 0, Math.PI * 2);
-      ctx.fillStyle = '#2563eb'; // Google Blue
+      ctx.fillStyle = '#2563eb';
       ctx.fill();
       ctx.lineWidth = 3;
       ctx.strokeStyle = '#ffffff';
       ctx.stroke();
 
-      // User Pin Label
       ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
       ctx.fillRect(userPos.x + 16, userPos.y - 10, 85, 20);
       ctx.strokeStyle = '#2563eb';
       ctx.strokeRect(userPos.x + 16, userPos.y - 10, 85, 20);
       ctx.fillStyle = '#1e40af';
       ctx.font = 'bold 11px Inter, sans-serif';
-      ctx.fillText(currentLang === 'en' ? '📍 Farmer Hub' : '📍 ರೈತ ಕೇಂದ್ರ', userPos.x + 22, pos.y ? pos.y + 4 : userPos.y + 4);
-    }
+      ctx.fillText(currentLang === 'en' ? '📍 Farmer Hub' : '📍 ರೈತ ಕೇಂದ್ರ', userPos.x + 22, userPos.y + 4);
+    };
+
+    // Use double requestAnimationFrame to ensure DOM dimensions are ready
+    const timer = setTimeout(() => {
+      requestAnimationFrame(renderMap);
+    }, 50);
+
+    return () => clearTimeout(timer);
   }, [currentPage, results, villageLocation, user, currentLang]);
 
   if (!user) {
@@ -575,7 +587,6 @@ export default function App() {
                   </select>
                 </div>
 
-                {/* Farmer Custom Input for Quantity */}
                 <div>
                   <div className="flex justify-between items-center mb-1">
                     <label className="block text-xs font-bold text-emerald-800 uppercase tracking-wider">{t.quantity}</label>
@@ -603,7 +614,6 @@ export default function App() {
                   </select>
                 </div>
 
-                {/* Farmer Custom Input for Transport Rate */}
                 <div>
                   <div className="flex justify-between items-center mb-1">
                     <label className="block text-xs font-bold text-emerald-800 uppercase tracking-wider">{t.transportRate}</label>
@@ -725,10 +735,7 @@ export default function App() {
 
         {currentPage === 4 && (
           <div className="space-y-6">
-            {/* Google Maps Style UI Container */}
             <div className="bg-white border border-emerald-200 rounded-3xl p-6 space-y-4 shadow-xl">
-              
-              {/* Google Maps Header Bar */}
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 bg-emerald-50/70 p-4 rounded-2xl border border-emerald-200">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-md">
@@ -751,11 +758,10 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Google Maps Interactive Simulation Canvas */}
-              <div className="relative w-full h-[420px] bg-[#f8fafc] rounded-2xl overflow-hidden border border-emerald-200 shadow-inner">
-                <canvas ref={canvasRef} className="w-full h-full block cursor-crosshair" />
+              {/* Map Canvas Container with Explicit Minimum Height */}
+              <div className="relative w-full h-[420px] min-h-[420px] bg-[#f8fafc] rounded-2xl overflow-hidden border border-emerald-200 shadow-inner">
+                <canvas ref={canvasRef} className="w-full h-full block" />
 
-                {/* Floating Google Maps Style Direction Card */}
                 {results.length > 0 && (
                   <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-emerald-200 shadow-lg max-w-xs space-y-2 z-10">
                     <div className="flex items-center justify-between text-xs font-bold text-slate-800 border-b border-slate-100 pb-2">
@@ -770,14 +776,12 @@ export default function App() {
                   </div>
                 )}
 
-                {/* Google Maps Style Bottom Map Controls Floating Bar */}
                 <div className="absolute bottom-4 right-4 flex items-center gap-2 bg-white/95 backdrop-blur-md px-3 py-2 rounded-xl border border-emerald-200 shadow-md text-xs font-bold text-slate-700">
                   <span className="flex items-center gap-1 text-blue-600"><Compass className="w-4 h-4" /> GPS Active</span>
                   <span className="text-slate-300">|</span>
                   <span className="text-emerald-700">Mandya APMC Hub</span>
                 </div>
               </div>
-
             </div>
           </div>
         )}
