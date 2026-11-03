@@ -536,3 +536,31 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+// 1. Add these 6 roles to your state if not already there:
+  const [role, setRole] = useState('FARMER');
+
+  const rolesList = [
+    ['FARMER', '🌱'],
+    ['BUYER', '🛒'],
+    ['FPO', '🌾'],
+    ['LOGISTICS', '🚚'],
+    ['MARKET_AGENT', '🤝'],
+    ['APMC', '🏛️']
+];
+  {/* Navigation Tabs - All 6 Roles */}
+          <nav className="flex items-center space-x-1 bg-slate-900/80 p-1 rounded-2xl border border-emerald-900/40 w-full md:w-auto overflow-x-auto custom-scrollbar">
+            {rolesList.map(([r, icon], idx) => (
+              <button 
+                key={r}
+                onClick={() => setRole(r)} 
+                className={`nav-tab text-xs font-semibold px-3 py-2 rounded-xl transition flex items-center gap-1.5 ${
+                  role === r 
+                    ? 'text-emerald-400 bg-emerald-950/80 border border-emerald-500/30' 
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                <span>{icon}</span>
+                <span>{r.replace('_', ' ')}</span>
+              </button>
+            ))}
+          </nav>
