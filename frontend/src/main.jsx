@@ -80,7 +80,6 @@ const I18N = {
   }
 };
 
-// ================= COMPONENT: SIGN-IN PAGE =================
 function LoginPage({ onLogin }) {
   const [selectedRole, setSelectedRole] = useState("FARMER");
   const [email, setEmail] = useState("farmer@agriconnect.in");
@@ -116,7 +115,6 @@ function LoginPage({ onLogin }) {
           <p className="text-xs text-slate-400">Team Inframind | LEAP Agritech Hackathon 2026[cite: 1]</p>
         </div>
 
-        {/* Role Switcher Grid */}
         <div className="space-y-1.5">
           <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Select Portal Role</label>
           <div className="grid grid-cols-2 gap-2">
@@ -138,7 +136,6 @@ function LoginPage({ onLogin }) {
           </div>
         </div>
 
-        {/* Login Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-1">
             <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Email Address</label>
@@ -185,9 +182,8 @@ function LoginPage({ onLogin }) {
   );
 }
 
-// ================= MAIN APP COMPONENT =================
 export default function App() {
-  const [user, setUser] = useState(null); // Auth State
+  const [user, setUser] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentLang, setCurrentLang] = useState('en');
   const [crop, setCrop] = useState('Tomato');
@@ -323,7 +319,6 @@ export default function App() {
     }
   }, [currentPage, results, villageLocation, user]);
 
-  // If user is not logged in, render Login Page
   if (!user) {
     return <LoginPage onLogin={(userData) => setUser(userData)} />;
   }
@@ -608,4 +603,64 @@ export default function App() {
 
               <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3">
                 <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Team Inframind Members[cite: 1]</h3>
-                <div className="grid grid-cols-1 md:grid-cols-
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-medium text-slate-300">
+                  <div className="p-3 bg-slate-900 rounded-xl border border-slate-800">
+                    <p className="font-bold text-emerald-400 text-sm">Aishwarya NS[cite: 1]</p>
+                    <p className="text-slate-400">Team Leader[cite: 1]</p>
+                    <p className="text-slate-500 text-[11px]">aishwaryans048@gmail.com[cite: 1]</p>
+                  </div>
+                  <div className="p-3 bg-slate-900 rounded-xl border border-slate-800">
+                    <p className="font-bold text-white text-sm">Varshini V[cite: 1]</p>
+                    <p className="text-slate-400">Team Member[cite: 1]</p>
+                    <p className="text-slate-500 text-[11px]">GMIT Mandya[cite: 1]</p>
+                  </div>
+                  <div className="p-3 bg-slate-900 rounded-xl border border-slate-800">
+                    <p className="font-bold text-white text-sm">Saniya Banu[cite: 1]</p>
+                    <p className="text-slate-400">Team Member[cite: 1]</p>
+                    <p className="text-slate-500 text-[11px]">GMIT Mandya[cite: 1]</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+
+      <footer className="bg-slate-900 border-t border-slate-800 py-4 px-4 sm:px-8 mt-auto sticky bottom-0 z-30 shadow-2xl">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <button onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))} disabled={currentPage === 1} className="bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed">
+            <ChevronLeft className="w-4 h-4" /><span>{t.prevBtn}</span>
+          </button>
+          <span className="text-xs font-bold text-slate-400 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">Page {currentPage} of 5</span>
+          <button onClick={() => setCurrentPage(prev => Math.min(5, prev + 1))} disabled={currentPage === 5} className="bg-emerald-600 hover:bg-emerald-500 text-slate-950 px-4 py-2 rounded-xl text-xs font-extrabold transition flex items-center gap-1.5 shadow-lg shadow-emerald-600/20 disabled:opacity-40">
+            <span>{t.nextBtn}</span><ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      </footer>
+
+      {modalData && (
+        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div className="flex justify-between items-center border-b border-slate-800 pb-3">
+              <h3 className="text-base font-bold text-emerald-400 flex items-center gap-2">
+                <Handshake className="w-5 h-5" /><span>Lock Deal & Dispatch Truck[cite: 1]</span>
+              </h3>
+              <button onClick={() => setModalData(null)} className="text-slate-400 hover:text-white"><X className="w-5 h-5" /></button>
+            </div>
+            <p className="text-xs text-slate-300 leading-relaxed">Locking deal with {modalData.buyer_name} at {modalData.mandi} for estimated payout of ₹{modalData.net_total.toLocaleString('en-IN')}[cite: 1].</p>
+            <div className="bg-slate-950 p-3 rounded-xl text-xs space-y-1.5 border border-slate-800 text-slate-300">
+              <div className="flex justify-between"><span>Payment Terms:</span><span className="text-emerald-400 font-bold">APMC Direct Settlement ✅[cite: 1]</span></div>
+              <div className="flex justify-between"><span>Buyer Verification:</span><span className="text-emerald-400 font-bold">Verified License ✅[cite: 1]</span></div>
+            </div>
+            <div className="flex gap-2 pt-2">
+              <button onClick={() => { alert("✅ Contract confirmed! Digital APMC code sent to farmer and buyer mobile numbers[cite: 1]."); setModalData(null); }} className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition">Confirm Contract[cite: 1]</button>
+              <button onClick={() => setModalData(null)} className="bg-slate-800 text-slate-300 font-bold px-4 py-2.5 rounded-xl text-xs transition">Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+createRoot(document.getElementById("root")).render(<App />);
