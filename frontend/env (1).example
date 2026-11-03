@@ -1,0 +1,128 @@
+import os
+from typing import Optional
+import httpx
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
+app = FastAPI(title="AgriConnect AI API", version="2.0.0")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+MARKETS = [
+    {"market":"Mandya APMC","distance_km":18,"Tomato":62,"Onion":34,"Potato":28},
+    {"market":"Maddur Market","distance_km":28,"Tomato":68,"Onion":36,"Potato":31},
+    {"market":"Malavalli Market","distance_km":42,"Tomato":60,"Onion":33,"Potato":29},
+    {"market":"Srirangapatna Market","distance_km":45,"Tomato":65,"Onion":35,"Potato":30},
+]
+
+def spoilage_rate(distance: float) -> float:
+    if distance <= 20: return 0.01
+    if distance <= 40: return 0.02
+    if distance <= 60: return 0.035
+    return 0.05
+
+class RecommendationRequest(BaseModel):
+    crop: str = "Tomato"
+    quantity: float = 500
+    location: str = "Mandya"
+    radius_km: float = 50
+    transport_per_km: float = 20
+    labour: float = 500
+    sorting: float = 0
+    packaging: float = 300
+
+@app.get("/")
+def root():
+    return {"name":"AgriConnect AI","status":"ok","scope":"Karnataka APMC Pilot"}
+
+@app.get("/health")
+def health():
+    return {"status":"healthy"}
+
+@app.post("/recommendations")
+def recommendations(req: RecommendationRequest):
+    crop = req.crop.title()
+    output = []
+    for m in MARKETS:
+        if m["distance_km"] > req.radius_km:
+            continue
+        price = m.get(crop, 50)
+        gross = price * req.quantity
+        transport = m["distance_km"] * req.transport_per_km
+        loss_rate = spoilage_rate(m["distance_km"])
+        spoilage_value = req.quantity * loss_rate * price
+        net = gross - transport - spoilage_value - req.labour - req.sorting - req.packaging
+        output.append({
+            "market": m["market"],
+            "distance_km": m["distance_km"],
+            "modal_price": price,
+            "gross_revenue": round(gross),
+            "transport_cost": round(transport),
+            "expected_spoilage": round(spoilage_value),
+            "spoilage_rate": loss_rate,
+            "labour_cost": req.labour,
+            "sorting_cost": req.sorting,
+            "packaging_cost": req.packaging,
+            "net_earnings": round(net),
+        })
+    output.sort(key=lambda x: x["net_earnings"], reverse=True)
+    return {"recommendations": output, "calculation":"deterministic"}
+
+@app.get("/apmc/prices")
+def apmc_prices():
+    return {
+        "read_only": True,
+        "scope": "Karnataka APMC Pilot",
+        "prices": [
+            {"crop":"Tomato","market":"Mandya APMC","low":45,"modal":62,"high":72},
+            {"crop":"Tomato","market":"Maddur Market","low":48,"modal":68,"high":78},
+            {"crop":"Tomato","market":"Malavalli Market","low":42,"modal":60,"high":70},
+            {"crop":"Onion","market":"Mandya APMC","low":25,"modal":34,"high":40},
+            {"crop":"Onion","market":"Maddur Market","low":27,"modal":36,"high":43},
+            {"crop":"Potato","market":"Maddur Market","low":22,"modal":31,"high":38},
+        ]
+    }
+
+@app.get("/marketplace/lots")
+def lots():
+    return [
+        {"id":1,"crop":"Tomato","quantity":500,"location":"Mandya","condition":"Grade A / mixed ripeness","farmer_id":1},
+        {"id":2,"crop":"Onion","quantity":300,"location":"Maddur","condition":"Cleaned / ready for pickup","farmer_id":1},
+        {"id":3,"crop":"Tomato","quantity":250,"location":"Malavalli","condition":"Fresh harvest lot","farmer_id":1},
+    ]
+
+class Offer(BaseModel):
+    lot_id: int
+    buyer_id: int
+    price_per_kg: float
+    quantity: float
+    terms: str = "Same-day settlement • escrow protected"
+
+@app.post("/marketplace/offers")
+def create_offer(offer: Offer):
+    return {
+        "status":"accepted",
+        "offer":offer.model_dump(),
+        "message":"Offer recorded for farmer review.",
+        "trust":"verified institutional buyer workflow"
+    }
+
+@app.post("/ai/advice")
+async def ai_advice(prompt: str, language: str = "English"):
+    key = os.getenv("GEMINI_API_KEY")
+    if not key:
+        return {"mode":"fallback","text":"Demand is expected to remain stable in the selected Karnataka pilot markets. Maddur currently offers the strongest estimated net realization for the selected harvest. Financial values are calculated deterministically by the backend."}
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
+    body = {"contents":[{"parts":[{"text":f"Respond in {language}. Give a concise agricultural market insight. Do not calculate money. Context: {prompt}"}]}]}
+    async with httpx.AsyncClient(timeout=12) as client:
+        r = await client.post(url, params={"key": key}, json=body)
+        r.raise_for_status()
+        data = r.json()
+        text = data["candidates"][0]["content"]["parts"][0]["text"]
+        return {"mode":"gemini","text":text}
