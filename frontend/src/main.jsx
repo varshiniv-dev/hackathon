@@ -40,8 +40,11 @@ const I18N = {
     nextBtn: "Next Page",
     p1Title: "Why Listed Market Prices are Misleading for Perishable Farmers",
     p1Subtitle: "Most small farmers sell to nearby local traders due to perishable crop urgency. Existing platforms like Agmarknet display listed prices, but completely ignore transport costs, transit spoilage losses, and buyer reliability.",
+    stat1Title: "LOCAL SALES DOMINANCE",
     stat1Desc: "of surveyed crop sales go to local village traders; only 4.6% reach APMC mandis (NSS 77th Round MoSPI)[cite: 1].",
+    stat2Title: "POST-HARVEST SPOILAGE",
     stat2Desc: "of perishable fruits and vegetables are lost in transit before reaching distant markets (ICAR-CIPHET)[cite: 1].",
+    stat3Title: "SMALLHOLDER HOLDINGS",
     stat3Desc: "of Indian farm households own less than 1 hectare with limited individual bargaining leverage[cite: 1].",
     gapMatrixTitle: "Existing Solutions vs. AgriConnect AI Gap Analysis[cite: 1]",
     p2InputTitle: "Farmer Harvest & Route Parameters[cite: 1]",
@@ -52,7 +55,20 @@ const I18N = {
     minTrust: "Buyer Trust Filter Threshold",
     p3CardsHeader: "Top 3 Ranked Options (Filtered by Buyer Trust)[cite: 1]",
     p4MapTitle: "Regional Mandi & Route Distance Canvas[cite: 1]",
-    p4MapSub: "Visualizes OpenRouteService driving distances and optimal green route vectors from Mandya[cite: 1]."
+    p4MapSub: "Visualizes OpenRouteService driving distances and optimal green route vectors from Mandya[cite: 1].",
+    loginTitle: "AgriConnect AI",
+    loginSubtitle: "Team Inframind | LEAP Agritech Hackathon 2026[cite: 1]",
+    selectRoleLabel: "Select Portal Role",
+    emailLabel: "Email Address",
+    passwordLabel: "Password",
+    loginNotice: "Pre-filled credentials enabled for hackathon judges evaluation.",
+    signInBtn: "Sign In as",
+    signOut: "Sign Out",
+    lockDeal: "Lock Deal & Dispatch Truck[cite: 1]",
+    confirmContract: "Confirm Contract[cite: 1]",
+    cancel: "Cancel",
+    paymentTerms: "Payment Terms: APMC Direct Settlement ✅[cite: 1]",
+    buyerVerif: "Buyer Verification: Verified License ✅[cite: 1]"
   },
   kn: {
     navPage1: "ಸಮಸ್ಯೆ ಮತ್ತು ಸಂಶೋಧನೆ", 
@@ -64,8 +80,11 @@ const I18N = {
     nextBtn: "ಮುಂದಿನ ಪುಟ",
     p1Title: "ರೈತರಿಗೆ ಮಾರುಕಟ್ಟೆಯ ಕೇವಲ ಬೆಲೆ ಪಟ್ಟಿ ಏಕೆ ಮೋಸಗೊಳಿಸುತ್ತದೆ?",
     p1Subtitle: "ಹೆಚ್ಚಿನ ಸಣ್ಣ ರೈತರು ಕೊಳೆಯುವ ಬೆಳೆಗಳ ಕಾರಣದಿಂದ ಸ್ಥಳೀಯ ವರ್ತಕರಿಗೆ ಮಾರಾಟ ಮಾಡುತ್ತಾರೆ. ಅಗ್ರ್‌ಮಾರ್ಕ್‌ನೆಟ್ ನಂತಹ ವೇದಿಕೆಗಳು ಕೇವಲ ಬೆಲೆಯನ್ನು ತೋರಿಸುತ್ತವೆ, ಆದರೆ ಸಾರಿಗೆ ವೆಚ್ಚ ಮತ್ತು ನಷ್ಟವನ್ನು ಲೆಕ್ಕಿಸುವುದಿಲ್ಲ.",
+    stat1Title: "ಸ್ಥಳೀಯ ಮಾರಾಟ ಪ್ರಾಬಲ್ಯ",
     stat1Desc: "ಸಮೀಕ್ಷೆ ಮಾಡಿದ ಬೆಳೆ ಮಾರಾಟದಲ್ಲಿ ಸ್ಥಳೀಯ ವರ್ತಕರಿಗೆ ತಲುಪುತ್ತದೆ; ಕೇವಲ ೪.೬% ಎಪಿಎಂಸಿ ಮಂಡಿಗಳನ್ನು ತಲುಪುತ್ತದೆ[cite: 1].",
-    stat2Desc: "ಸಾರಿಗೆ ಸಮಯದಲ್ಲಿ ಕೊಳೆಯುವ ಹಣ್ಣುಗಳು ಮತ್ತು ತರಕಾರಿಗಳು ನಾಶವಾಗುತ್ತವೆ[cite: 1].",
+    stat2Title: "ಕೊಯ್ಲಿನ ನಂತರದ ನಷ್ಟ",
+    stat2Desc: "ದೂರದ ಮಾರುಕಟ್ಟೆಗಳನ್ನು ತಲುಪುವ ಮೊದಲು ಸಾರಿಗೆಯಲ್ಲಿ ಕೊಳೆಯುವ ಹಣ್ಣುಗಳು ಮತ್ತು ತರಕಾರಿಗಳು ನಷ್ಟವಾಗುತ್ತವೆ[cite: 1].",
+    stat3Title: "ಸಣ್ಣ ಹಿಡುವಳಿದಾರರು",
     stat3Desc: "ಭಾರತೀಯ ರೈತ ಕುಟುಂಬಗಳು ೧ ಹೆಕ್ಟೇರ್‌ಗಿಂತ ಕಡಿಮೆ ಜಮೀನು ಹೊಂದಿದ್ದಾರೆ[cite: 1].",
     gapMatrixTitle: "ಪ್ರಸ್ತುತ ಪರಿಹಾರಗಳು ಮತ್ತು ಅಗ್ರಿಕನೆಕ್ಟ್ ಎಐ ಹೋಲಿಕೆ[cite: 1]",
     p2InputTitle: "ರೈತರ ವಿವರಗಳ ನಮೂದು[cite: 1]",
@@ -76,53 +95,67 @@ const I18N = {
     minTrust: "ಖರೀದಿದಾರರ ನಂಬಿಕೆ ಮಿತಿ",
     p3CardsHeader: "ಉನ್ನತ ೩ ಆಯ್ಕೆಗಳು (ನಂಬಿಕೆ ಆಧಾರಿತ)[cite: 1]",
     p4MapTitle: "ಸಾರಿಗೆ ಮಾರ್ಗ ನಕ್ಷೆ[cite: 1]",
-    p4MapSub: "ಮಂಡ್ಯದಿಂದ ಸಾರಿಗೆ ದೂರ ಮತ್ತು ಉತ್ತಮ ಮಾರ್ಗಗಳನ್ನು ತೋರಿಸುತ್ತದೆ[cite: 1]."
+    p4MapSub: "ಮಂಡ್ಯದಿಂದ ಸಾರಿಗೆ ದೂರ ಮತ್ತು ಉತ್ತಮ ಮಾರ್ಗಗಳನ್ನು ತೋರಿಸುತ್ತದೆ[cite: 1].",
+    loginTitle: "ಅಗ್ರಿಕನೆಕ್ಟ್ ಎಐ",
+    loginSubtitle: "ತಂಡ ಇನ್ಫ್ರಾಮೈಂಡ್ | LEAP ಅಗ್ರಿಟೆಕ್ ಹ್ಯಾಕಾಥಾನ್ 2026[cite: 1]",
+    selectRoleLabel: "ಪಾತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+    emailLabel: "ಇಮೇಲ್ ವಿಳಾಸ",
+    passwordLabel: "ಪಾಸ್‌ವರ್ಡ್",
+    loginNotice: "ಹ್ಯಾಕಾಥಾನ್ ತೀರ್ಪುಗಾರರ ಮೌಲ್ಯಮಾಪನಕ್ಕಾಗಿ ಪೂರ್ವ-ಭರ್ತಿ ಮಾಡಿದ ರುಜುವಾತುಗಳು.",
+    signInBtn: "ಪ್ರವೇಶಿಸಿ:",
+    signOut: "ಹೊರಬನ್ನಿ",
+    lockDeal: "ಒಪ್ಪಂದ ಲಾಕ್ ಮಾಡಿ ಮತ್ತು ಲಾರಿ ಕಳುಹಿಸಿ[cite: 1]",
+    confirmContract: "ಒಪ್ಪಂದ ದೃಢೀಕರಿಸಿ[cite: 1]",
+    cancel: "ರದ್ದುಮಾಡಿ",
+    paymentTerms: "ಪಾವತಿ ನಿಯಮಗಳು: ಎಪಿಎಂಸಿ ನೇರ ಇತ್ಯರ್ಥ ✅[cite: 1]",
+    buyerVerif: "ಖರೀದಿದಾರರ ಪರಿಶೀಲನೆ: ಪರವಾನಗಿ ಸಕ್ರಿಯವಾಗಿದೆ ✅[cite: 1]"
   }
 };
 
-function LoginPage({ onLogin }) {
+function LoginPage({ onLogin, currentLang, setCurrentLang }) {
   const [selectedRole, setSelectedRole] = useState("FARMER");
   const [email, setEmail] = useState("farmer@agriconnect.in");
   const [password, setPassword] = useState("demo123");
+  const t = I18N[currentLang];
 
   const roles = [
-    { id: "FARMER", label: "🌱 Farmer", email: "farmer@agriconnect.in" },
-    { id: "BUYER", label: "🛒 Buyer", email: "buyer@agriconnect.in" },
-    { id: "FPO", label: "🌾 FPO", email: "fpo@agriconnect.in" },
-    { id: "LOGISTICS", label: "🚚 Logistics", email: "transporter@agriconnect.in" },
-    { id: "AGENT", label: "🤝 Market Agent", email: "agent@agriconnect.in" },
-    { id: "APMC", label: "🏛️ APMC Admin", email: "admin@apmc.gov.in" },
+    { id: "FARMER", label: currentLang === 'en' ? "🌱 Farmer" : "🌱 ರೈತ", email: "farmer@agriconnect.in" },
+    { id: "BUYER", label: currentLang === 'en' ? "🛒 Buyer" : "🛒 ಖರೀದಿದಾರ", email: "buyer@agriconnect.in" },
+    { id: "FPO", label: currentLang === 'en' ? "🌾 FPO" : "🌾 ಎಫ್‌ಪಿಒ", email: "fpo@agriconnect.in" },
+    { id: "LOGISTICS", label: currentLang === 'en' ? "🚚 Logistics" : "🚚 ಸಾರಿಗೆ", email: "transporter@agriconnect.in" },
+    { id: "AGENT", label: "🤝 " + (currentLang === 'en' ? "Market Agent" : "ಮಾರುಕಟ್ಟೆ ಏಜೆಂಟ್"), email: "agent@agriconnect.in" },
+    { id: "APMC", label: "🏛️ " + (currentLang === 'en' ? "APMC Admin" : "ಎಪಿಎಂಸಿ ನಿರ್ವಾಹಕ"), email: "admin@apmc.gov.in" },
   ];
 
-  const handleRoleSelect = (roleObj) => {
-    setSelectedRole(roleObj.id);
-    setEmail(roleObj.email);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onLogin({ role: selectedRole, email });
-  };
-
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4 relative">
+      <div className="absolute top-4 right-4">
+        <button 
+          onClick={() => setCurrentLang(currentLang === 'en' ? 'kn' : 'en')} 
+          className="bg-emerald-950 hover:bg-emerald-900 text-emerald-200 px-4 py-2 rounded-xl border border-emerald-500/40 text-xs font-bold flex items-center gap-2 transition"
+        >
+          <Languages className="w-4 h-4" />
+          <span>{currentLang === 'en' ? 'ಕನ್ನಡ' : 'English'}</span>
+        </button>
+      </div>
+
       <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl space-y-6">
         <div className="text-center space-y-2">
           <div className="w-16 h-16 bg-emerald-500/20 border border-emerald-500/40 rounded-2xl mx-auto flex items-center justify-center shadow-lg shadow-emerald-500/10">
             <Sprout className="w-9 h-9 text-emerald-400" />
           </div>
-          <h1 className="text-2xl font-black text-white tracking-tight">AgriConnect AI</h1>
-          <p className="text-xs text-slate-400">Team Inframind | LEAP Agritech Hackathon 2026[cite: 1]</p>
+          <h1 className="text-2xl font-black text-white tracking-tight">{t.loginTitle}</h1>
+          <p className="text-xs text-slate-400">{t.loginSubtitle}</p>
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Select Portal Role</label>
+          <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">{t.selectRoleLabel}</label>
           <div className="grid grid-cols-2 gap-2">
             {roles.map((r) => (
               <button
                 key={r.id}
                 type="button"
-                onClick={() => handleRoleSelect(r)}
+                onClick={() => { setSelectedRole(r.id); setEmail(r.email); }}
                 className={`py-2 px-3 text-xs font-bold rounded-xl transition border text-left flex items-center justify-between ${
                   selectedRole === r.id
                     ? "bg-emerald-600 text-slate-950 border-emerald-400 shadow-md"
@@ -136,9 +169,9 @@ function LoginPage({ onLogin }) {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={(e) => { e.preventDefault(); onLogin({ role: selectedRole, email }); }} className="space-y-4">
           <div className="space-y-1">
-            <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Email Address</label>
+            <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t.emailLabel}</label>
             <div className="relative flex items-center">
               <Mail className="absolute left-3 w-4 h-4 text-slate-500" />
               <input
@@ -152,7 +185,7 @@ function LoginPage({ onLogin }) {
           </div>
 
           <div className="space-y-1">
-            <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Password</label>
+            <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t.passwordLabel}</label>
             <div className="relative flex items-center">
               <Lock className="absolute left-3 w-4 h-4 text-slate-500" />
               <input
@@ -167,14 +200,14 @@ function LoginPage({ onLogin }) {
 
           <div className="p-3 bg-emerald-950/40 border border-emerald-500/30 rounded-xl text-emerald-300 text-xs flex items-center space-x-2">
             <UserCheck className="w-4 h-4 shrink-0 text-emerald-400" />
-            <span>Pre-filled credentials enabled for hackathon judges evaluation.</span>
+            <span>{t.loginNotice}</span>
           </div>
 
           <button
             type="submit"
             className="w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-extrabold py-3 rounded-xl transition shadow-lg shadow-emerald-600/20 text-xs uppercase tracking-wider"
           >
-            Sign In as {selectedRole}
+            {t.signInBtn} {selectedRole}
           </button>
         </form>
       </div>
@@ -256,16 +289,15 @@ export default function App() {
 
     if (computed.length > 0) {
       const top1 = computed[0];
-      if (computed.length > 1) {
-        const diff = (top1.net_total - computed[1].net_total).toLocaleString('en-IN');
-        setReasoning(`${top1.mandi} ranks #1 with an estimated net total of ₹${top1.net_total.toLocaleString('en-IN')} (₹${diff} higher than runner-up). Higher modal price outweighs transit spoilage[cite: 1].`);
+      if (currentLang === 'en') {
+        setReasoning(`${top1.mandi} ranks #1 with an estimated net total of ₹${top1.net_total.toLocaleString('en-IN')} with verified buyer trust.`);
       } else {
-        setReasoning(`${top1.mandi} is the top option delivering ₹${top1.net_total.toLocaleString('en-IN')} net returns[cite: 1].`);
+        setReasoning(`${top1.mandi} ಮೊದಲ ಸ್ಥಾನದಲ್ಲಿದೆ, ಅಂದಾಜು ನಿವ್ವಳ ಲಾಭ ₹${top1.net_total.toLocaleString('en-IN')} ಆಗಿದೆ.`);
       }
     } else {
-      setReasoning("No verified buyers match your trust score filter threshold[cite: 1].");
+      setReasoning(currentLang === 'en' ? "No verified buyers match your trust score filter threshold." : "ನಿಮ್ಮ ನಂಬಿಕೆ ಮಿತಿಗೆ ಹೊಂದಿಕೆಯಾಗುವ ಯಾವುದೇ ಖರೀದಿದಾರರಿಲ್ಲ.");
     }
-  }, [crop, quantity, villageLocation, transportRate, minTrust, user]);
+  }, [crop, quantity, villageLocation, transportRate, minTrust, user, currentLang]);
 
   useEffect(() => {
     if (currentPage === 4 && canvasRef.current && user) {
@@ -315,12 +347,12 @@ export default function App() {
       ctx.fillStyle = '#fbbf24';
       ctx.fill();
       ctx.fillStyle = '#fef3c7';
-      ctx.fillText("Farmer Hub", userPos.x + 10, userPos.y + 4);
+      ctx.fillText(currentLang === 'en' ? "Farmer Hub" : "ರೈತ ಕೇಂದ್ರ", userPos.x + 10, userPos.y + 4);
     }
-  }, [currentPage, results, villageLocation, user]);
+  }, [currentPage, results, villageLocation, user, currentLang]);
 
   if (!user) {
-    return <LoginPage onLogin={(userData) => setUser(userData)} />;
+    return <LoginPage onLogin={(userData) => setUser(userData)} currentLang={currentLang} setCurrentLang={setCurrentLang} />;
   }
 
   return (
@@ -372,7 +404,7 @@ export default function App() {
             </button>
             <button onClick={() => setUser(null)} className="bg-rose-950/80 hover:bg-rose-900 text-rose-300 px-3 py-1.5 rounded-xl border border-rose-500/40 text-xs font-bold flex items-center gap-1.5 transition">
               <LogOut className="w-3.5 h-3.5" />
-              <span>Sign Out</span>
+              <span>{t.signOut}</span>
             </button>
           </div>
         </div>
@@ -391,17 +423,17 @@ export default function App() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-2">
-                <div className="flex justify-between items-center"><span className="text-xs font-bold text-slate-400">LOCAL SALES DOMINANCE</span><Store className="w-5 h-5 text-amber-400" /></div>
+                <div className="flex justify-between items-center"><span className="text-xs font-bold text-slate-400">{t.stat1Title}</span><Store className="w-5 h-5 text-amber-400" /></div>
                 <div className="text-3xl font-extrabold text-amber-400">78%</div>
                 <p className="text-xs text-slate-400 leading-relaxed">{t.stat1Desc}</p>
               </div>
               <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-2">
-                <div className="flex justify-between items-center"><span className="text-xs font-bold text-slate-400">POST-HARVEST SPOILAGE</span><AlertTriangle className="w-5 h-5 text-rose-400" /></div>
+                <div className="flex justify-between items-center"><span className="text-xs font-bold text-slate-400">{t.stat2Title}</span><AlertTriangle className="w-5 h-5 text-rose-400" /></div>
                 <div className="text-3xl font-extrabold text-rose-400">6–16%</div>
                 <p className="text-xs text-slate-400 leading-relaxed">{t.stat2Desc}</p>
               </div>
               <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-2">
-                <div className="flex justify-between items-center"><span className="text-xs font-bold text-slate-400">SMALLHOLDER HOLDINGS</span><Users className="w-5 h-5 text-emerald-400" /></div>
+                <div className="flex justify-between items-center"><span className="text-xs font-bold text-slate-400">{t.stat3Title}</span><Users className="w-5 h-5 text-emerald-400" /></div>
                 <div className="text-3xl font-extrabold text-emerald-400">70%</div>
                 <p className="text-xs text-slate-400 leading-relaxed">{t.stat3Desc}</p>
               </div>
@@ -415,12 +447,26 @@ export default function App() {
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
                   <thead className="bg-slate-950 text-slate-400 uppercase font-bold border-b border-slate-800">
-                    <tr><th className="p-3">Existing Solution</th><th className="p-3">How It Works</th><th className="p-3">Critical Limitation / Gap</th><th className="p-3 text-emerald-400">AgriConnect AI Advantage</th></tr>
+                    <tr>
+                      <th className="p-3">{currentLang === 'en' ? 'Existing Solution' : 'ಪ್ರಸ್ತುತ ಪರಿಹಾರ'}</th>
+                      <th className="p-3">{currentLang === 'en' ? 'How It Works' : 'ಕಾರ್ಯನಿರ್ವಹಣೆ'}</th>
+                      <th className="p-3">{currentLang === 'en' ? 'Critical Limitation' : 'ಮಿತಿ / ಸಮಸ್ಯೆ'}</th>
+                      <th className="p-3 text-emerald-400">{currentLang === 'en' ? 'AgriConnect AI Advantage' : 'ಅಗ್ರಿಕನೆಕ್ಟ್ ಎಐ ಅನುಕೂಲ'}</th>
+                    </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-800/60 font-medium text-slate-300">
-                    <tr><td className="p-3 font-bold text-white">Agmarknet (data.gov.in)</td><td className="p-3">Daily listed modal prices by mandi</td><td className="p-3 text-rose-400">Shows price only. No transport or spoilage deduction.</td><td className="p-3 text-emerald-300">Calculates net take-home cash after transit costs.</td></tr>
-                    <tr><td className="p-3 font-bold text-white">eNAM / ReMS Karnataka</td><td className="p-3">Online APMC trading platform</td><td className="p-3 text-rose-400">No net-return ranking or perishable spoilage model.</td><td className="p-3 text-emerald-300">Ranks top 3 mandis by true net revenue per quintal.</td></tr>
-                    <tr><td className="p-3 font-bold text-white">Kisan Rath App</td><td className="p-3">Aggregates trucks & transport options</td><td className="p-3 text-rose-400">Transport booking only. Disconnected from mandi prices.</td><td className="p-3 text-emerald-300">Integrates route distance math directly with crop sales.</td></tr>
+                    <tr>
+                      <td className="p-3 font-bold text-white">Agmarknet</td>
+                      <td className="p-3">{currentLang === 'en' ? 'Daily listed modal prices' : 'ದೈನಂದಿನ ಮಾರುಕಟ್ಟೆ ಬೆಲೆಗಳು'}</td>
+                      <td className="p-3 text-rose-400">{currentLang === 'en' ? 'No transport or spoilage deduction.' : 'ಸಾರಿಗೆ ಮತ್ತು ನಷ್ಟವನ್ನು ಪರಿಗಣಿಸುವುದಿಲ್ಲ.'}</td>
+                      <td className="p-3 text-emerald-300">{currentLang === 'en' ? 'Calculates net take-home cash.' : 'ನಿವ್ವಳ ನಗದು ಲಾಭವನ್ನು ಲೆಕ್ಕಹಾಕುತ್ತದೆ.'}</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-white">eNAM / ReMS</td>
+                      <td className="p-3">{currentLang === 'en' ? 'Online APMC trading platform' : 'ಆನ್‌ಲೈನ್ ಎಪಿಎಂಸಿ ವೇದಿಕೆ'}</td>
+                      <td className="p-3 text-rose-400">{currentLang === 'en' ? 'No perishable spoilage model.' : 'ಕೊಳೆಯುವ ಬೆಳೆಗಳ ನಷ್ಟದ ಮಾದರಿ ಇಲ್ಲ.'}</td>
+                      <td className="p-3 text-emerald-300">{currentLang === 'en' ? 'Ranks top 3 mandis by net revenue.' : 'ಉನ್ನತ ೩ ಮಂಡಿಗಳನ್ನು ಶ್ರೇಣೀಕರಿಸುತ್ತದೆ.'}</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -444,9 +490,9 @@ export default function App() {
                 <div>
                   <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{t.selectCrop}</label>
                   <select value={crop} onChange={(e) => setCrop(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-sm font-semibold text-slate-100 focus:border-emerald-500 focus:outline-none">
-                    <option value="Tomato">Tomato (ಟೊಮೆಟೊ) - High Perishable</option>
-                    <option value="Onion">Onion (ಈರುಳ್ಳಿ) - Medium Perishable</option>
-                    <option value="Potato">Potato (ಆಲೂಗಡ್ಡೆ) - Low Perishable</option>
+                    <option value="Tomato">Tomato (ಟೊಮೆಟೊ)</option>
+                    <option value="Onion">Onion (ಈರುಳ್ಳಿ)</option>
+                    <option value="Potato">Potato (ಆಲೂಗಡ್ಡೆ)</option>
                   </select>
                 </div>
 
@@ -488,15 +534,15 @@ export default function App() {
             <div className="lg:col-span-7 space-y-6">
               <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4 shadow-xl">
                 <h3 className="text-sm font-bold text-emerald-400 flex items-center gap-2">
-                  <Cpu className="w-4 h-4" /><span>Net-Return Formula & Rules Engine[cite: 1]</span>
+                  <Cpu className="w-4 h-4" /><span>{currentLang === 'en' ? 'Net-Return Formula & Rules Engine[cite: 1]' : 'ನಿವ್ವಳ ಲಾಭ ಸೂತ್ರ ಮತ್ತು ಎಐ ಎಂಜಿನ್[cite: 1]'}</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
                   <div className="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
-                    <span className="font-bold text-slate-300">Spoilage Loss Formula[cite: 1]</span>
-                    <p className="text-slate-400">spoilage_fraction = min(0.5, rate_per_hour × travel_hours)</p>
+                    <span className="font-bold text-slate-300">{currentLang === 'en' ? 'Spoilage Loss Formula[cite: 1]' : 'ಸಾಗಣೆ ನಷ್ಟ ಸೂತ್ರ[cite: 1]'}</span>
+                    <p className="text-slate-400">spoilage = min(0.5, hourly_rate × travel_hours)</p>
                   </div>
                   <div className="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
-                    <span className="font-bold text-slate-300">Net Return / Quintal[cite: 1]</span>
+                    <span className="font-bold text-slate-300">{currentLang === 'en' ? 'Net Return / Quintal[cite: 1]' : 'ಪ್ರತಿ ಕ್ವಿಂಟಾಲ್ ನಿವ್ವಳ ಲಾಭ[cite: 1]'}</span>
                     <p className="text-slate-400">modal_price × (1 - spoilage) - transport_per_q</p>
                   </div>
                 </div>
@@ -504,7 +550,7 @@ export default function App() {
 
               <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-3xl p-5 text-emerald-200 space-y-2">
                 <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm">
-                  <Sparkles className="w-4 h-4" /><span>Engine Output Stream Active[cite: 1]</span>
+                  <Sparkles className="w-4 h-4" /><span>{currentLang === 'en' ? 'AI Reasoning Output[cite: 1]' : 'ಎಐ ಸಲಹಾ ವರದಿ[cite: 1]'}</span>
                 </div>
                 <p className="text-xs leading-relaxed text-emerald-300/90">{reasoning}</p>
               </div>
@@ -516,7 +562,7 @@ export default function App() {
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-emerald-950 via-slate-900 to-emerald-950 border border-emerald-700/50 rounded-3xl p-6 shadow-2xl space-y-2">
               <div className="flex items-center gap-2 text-emerald-400 text-xs font-extrabold uppercase tracking-widest">
-                <Users className="w-4 h-4" /><span>Plain-Language AI Recommendation Rationale[cite: 1]</span>
+                <Users className="w-4 h-4" /><span>{currentLang === 'en' ? 'AI Recommendation Rationale[cite: 1]' : 'ಎಐ ಶಿಫಾರಸು ವಿವರಣೆ[cite: 1]'}</span>
               </div>
               <p className="text-sm font-medium text-emerald-100 leading-relaxed">{reasoning}</p>
             </div>
@@ -533,15 +579,15 @@ export default function App() {
                       <span className="text-xs font-bold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Trust {item.trust_score}/100</span>
                     </div>
                     <h4 className="text-lg font-bold text-white">{item.mandi}</h4>
-                    <p className="text-xs text-slate-400">Buyer: {item.buyer_name}</p>
+                    <p className="text-xs text-slate-400">{currentLang === 'en' ? 'Buyer:' : 'ಖರೀದಿದಾರ:'} {item.buyer_name}</p>
                     <div className="space-y-1.5 text-xs text-slate-300 border-t border-slate-800 pt-3">
-                      <div className="flex justify-between"><span>Modal Price:</span><span className="font-bold">₹{item.modal_price}/q</span></div>
-                      <div className="flex justify-between"><span>Distance:</span><span>{item.distance_km} km ({item.travel_hours} h)</span></div>
-                      <div className="flex justify-between"><span>Spoilage:</span><span className="text-rose-400">-{item.spoilage_pct}%</span></div>
-                      <div className="flex justify-between font-bold border-t border-slate-800 pt-2"><span className="text-slate-200">Net Take-Home:</span><span className="text-emerald-400">₹{item.net_total.toLocaleString('en-IN')}</span></div>
+                      <div className="flex justify-between"><span>{currentLang === 'en' ? 'Modal Price:' : 'ಮಾರುಕಟ್ಟೆ ಬೆಲೆ:'}</span><span className="font-bold">₹{item.modal_price}/q</span></div>
+                      <div className="flex justify-between"><span>{currentLang === 'en' ? 'Distance:' : 'ದೂರ:'}</span><span>{item.distance_km} km ({item.travel_hours} h)</span></div>
+                      <div className="flex justify-between"><span>{currentLang === 'en' ? 'Spoilage:' : 'ನಷ್ಟ:'}</span><span className="text-rose-400">-{item.spoilage_pct}%</span></div>
+                      <div className="flex justify-between font-bold border-t border-slate-800 pt-2"><span className="text-slate-200">{currentLang === 'en' ? 'Net Take-Home:' : 'ನಿವ್ವಳ ಲಾಭ:'}</span><span className="text-emerald-400">₹{item.net_total.toLocaleString('en-IN')}</span></div>
                     </div>
                     <button onClick={() => setModalData(item)} className="w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-2 rounded-xl text-xs transition">
-                      Lock Deal & Dispatch
+                      {currentLang === 'en' ? 'Lock Deal & Dispatch' : 'ಒಪ್ಪಂದ ಲಾಕ್ ಮಾಡಿ'}
                     </button>
                   </div>
                 ))}
@@ -566,9 +612,8 @@ export default function App() {
               <div className="relative w-full h-80 bg-slate-950 rounded-2xl overflow-hidden border border-slate-800">
                 <canvas ref={canvasRef} className="w-full h-full block" />
                 <div className="absolute bottom-3 left-3 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700 text-xs text-slate-300 flex items-center gap-3">
-                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span> Farmer Hub</span>
-                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> #1 Optimal Mandi</span>
-                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-slate-400"></span> Alternative Mandis</span>
+                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span> {currentLang === 'en' ? 'Farmer Hub' : 'ರೈತ ಕೇಂದ್ರ'}</span>
+                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> #1 {currentLang === 'en' ? 'Optimal Mandi' : 'ಉತ್ತಮ ಮಂಡಿ'}</span>
                 </div>
               </div>
             </div>
@@ -581,43 +626,40 @@ export default function App() {
               <div className="border-b border-slate-800 pb-4 flex justify-between items-center">
                 <div>
                   <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">LEAP Agritech Hackathon 2026[cite: 1]</span>
-                  <h2 className="text-2xl font-extrabold text-white">AgriConnect AI — Impact & Team Inframind[cite: 1]</h2>
+                  <h2 className="text-2xl font-extrabold text-white">AgriConnect AI — {currentLang === 'en' ? 'Impact & Team Inframind' : 'ಪರಿಣಾಮ ಮತ್ತು ತಂಡ ಇನ್ಫ್ರಾಮೈಂಡ್'}[cite: 1]</h2>
                 </div>
                 <span className="text-xs bg-emerald-950 text-emerald-300 border border-emerald-800 px-3 py-1 rounded-full font-bold">GMIT Mandya[cite: 1]</span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
-                  <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm"><IndianRupee className="w-4 h-4" /><span>Economic Impact[cite: 1]</span></div>
-                  <p className="text-xs text-slate-300 leading-relaxed">Increases farmer net income by ₹15,000–₹30,000 per season by unlocking high-paying distant mandis after accounting for transport[cite: 1].</p>
+                  <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm"><IndianRupee className="w-4 h-4" /><span>{currentLang === 'en' ? 'Economic Impact' : 'ಆರ್ಥಿಕ ಪರಿಣಾಮ'}[cite: 1]</span></div>
+                  <p className="text-xs text-slate-300 leading-relaxed">{currentLang === 'en' ? 'Increases farmer net income by ₹15,000–₹30,000 per season by unlocking high-paying distant mandis[cite: 1].' : 'ದೂರದ ಉತ್ತಮ ಮಂಡಿಗಳನ್ನು ತಲುಪಿಸುವ ಮೂಲಕ ರೈತರ ಆದಾಯವನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ[cite: 1].'}</p>
                 </div>
                 <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
-                  <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm"><Leaf className="w-4 h-4" /><span>Environmental Impact[cite: 1]</span></div>
-                  <p className="text-xs text-slate-300 leading-relaxed">Reduces perishable harvest losses by 6–16% through transit-time calculations and optimal route selections[cite: 1].</p>
+                  <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm"><Leaf className="w-4 h-4" /><span>{currentLang === 'en' ? 'Environmental Impact' : 'ಪರಿಸರ ಪರಿಣಾಮ'}[cite: 1]</span></div>
+                  <p className="text-xs text-slate-300 leading-relaxed">{currentLang === 'en' ? 'Reduces perishable harvest losses by 6–16% through transit-time calculations[cite: 1].' : 'ಸಾಗಣೆ ಸಮಯದಲ್ಲಿ ಬೆಳೆಗಳು ಹಾಳಾಗುವುದನ್ನು ಶೇ. ೬-೧೬ ರಷ್ಟು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ[cite: 1].'}</p>
                 </div>
                 <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
-                  <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm"><Heart className="w-4 h-4" /><span>Social Impact[cite: 1]</span></div>
-                  <p className="text-xs text-slate-300 leading-relaxed">Empowers smallholders with Kannada voice guidance and protects them from non-paying buyers using Trust Scores[cite: 1].</p>
+                  <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm"><Heart className="w-4 h-4" /><span>{currentLang === 'en' ? 'Social Impact' : 'ಸಾಮಾಜಿಕ ಪರಿಣಾಮ'}[cite: 1]</span></div>
+                  <p className="text-xs text-slate-300 leading-relaxed">{currentLang === 'en' ? 'Empowers smallholders with Kannada voice guidance and verified buyer trust[cite: 1].' : 'ಕನ್ನಡ ಧ್ವನಿ ಮಾರ್ಗದರ್ಶನ ಮತ್ತು ನಂಬಿಕಾರ್ಹ ಖರೀದಿದಾರರೊಂದಿಗೆ ರೈತರನ್ನು ಸಬಲೀಕರಣಗೊಳಿಸುತ್ತದೆ[cite: 1].'}</p>
                 </div>
               </div>
 
               <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3">
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Team Inframind Members[cite: 1]</h3>
+                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">{currentLang === 'en' ? 'Team Inframind Members' : 'ತಂಡ ಇನ್ಫ್ರಾಮೈಂಡ್ ಸದಸ್ಯರು'}[cite: 1]</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-medium text-slate-300">
                   <div className="p-3 bg-slate-900 rounded-xl border border-slate-800">
                     <p className="font-bold text-emerald-400 text-sm">Aishwarya NS[cite: 1]</p>
-                    <p className="text-slate-400">Team Leader[cite: 1]</p>
-                    <p className="text-slate-500 text-[11px]">aishwaryans048@gmail.com[cite: 1]</p>
+                    <p className="text-slate-400">{currentLang === 'en' ? 'Team Leader' : 'ತಂಡದ ನಾಯಕಿ'}[cite: 1]</p>
                   </div>
                   <div className="p-3 bg-slate-900 rounded-xl border border-slate-800">
                     <p className="font-bold text-white text-sm">Varshini V[cite: 1]</p>
-                    <p className="text-slate-400">Team Member[cite: 1]</p>
-                    <p className="text-slate-500 text-[11px]">GMIT Mandya[cite: 1]</p>
+                    <p className="text-slate-400">{currentLang === 'en' ? 'Team Member' : 'ಸದಸ್ಯೆ'}[cite: 1]</p>
                   </div>
                   <div className="p-3 bg-slate-900 rounded-xl border border-slate-800">
                     <p className="font-bold text-white text-sm">Saniya Banu[cite: 1]</p>
-                    <p className="text-slate-400">Team Member[cite: 1]</p>
-                    <p className="text-slate-500 text-[11px]">GMIT Mandya[cite: 1]</p>
+                    <p className="text-slate-400">{currentLang === 'en' ? 'Team Member' : 'ಸದಸ್ಯೆ'}[cite: 1]</p>
                   </div>
                 </div>
               </div>
@@ -643,18 +685,20 @@ export default function App() {
           <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
             <div className="flex justify-between items-center border-b border-slate-800 pb-3">
               <h3 className="text-base font-bold text-emerald-400 flex items-center gap-2">
-                <Handshake className="w-5 h-5" /><span>Lock Deal & Dispatch Truck[cite: 1]</span>
+                <Handshake className="w-5 h-5" /><span>{t.lockDeal}</span>
               </h3>
               <button onClick={() => setModalData(null)} className="text-slate-400 hover:text-white"><X className="w-5 h-5" /></button>
             </div>
-            <p className="text-xs text-slate-300 leading-relaxed">Locking deal with {modalData.buyer_name} at {modalData.mandi} for estimated payout of ₹{modalData.net_total.toLocaleString('en-IN')}[cite: 1].</p>
+            <p className="text-xs text-slate-300 leading-relaxed">
+              {currentLang === 'en' ? `Locking deal with ${modalData.buyer_name} at ${modalData.mandi} for ₹${modalData.net_total.toLocaleString('en-IN')}[cite: 1].` : `${modalData.buyer_name} (${modalData.mandi}) ಅವರೊಂದಿಗೆ ₹${modalData.net_total.toLocaleString('en-IN')} ಮೊತ್ತಕ್ಕೆ ಒಪ್ಪಂದ ಲಾಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ[cite: 1].`}
+            </p>
             <div className="bg-slate-950 p-3 rounded-xl text-xs space-y-1.5 border border-slate-800 text-slate-300">
-              <div className="flex justify-between"><span>Payment Terms:</span><span className="text-emerald-400 font-bold">APMC Direct Settlement ✅[cite: 1]</span></div>
-              <div className="flex justify-between"><span>Buyer Verification:</span><span className="text-emerald-400 font-bold">Verified License ✅[cite: 1]</span></div>
+              <div className="flex justify-between"><span>{t.paymentTerms}</span></div>
+              <div className="flex justify-between"><span>{t.buyerVerif}</span></div>
             </div>
             <div className="flex gap-2 pt-2">
-              <button onClick={() => { alert("✅ Contract confirmed! Digital APMC code sent to farmer and buyer mobile numbers[cite: 1]."); setModalData(null); }} className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition">Confirm Contract[cite: 1]</button>
-              <button onClick={() => setModalData(null)} className="bg-slate-800 text-slate-300 font-bold px-4 py-2.5 rounded-xl text-xs transition">Cancel</button>
+              <button onClick={() => { alert(currentLang === 'en' ? "✅ Contract confirmed! Digital APMC code sent[cite: 1]." : "✅ ಒಪ್ಪಂದ ದೃಢೀಕರಿಸಲಾಗಿದೆ! ಡಿಜಿಟಲ್ ಎಪಿಎಂಸಿ ಕೋಡ್ ಕಳುಹಿಸಲಾಗಿದೆ[cite: 1]."); setModalData(null); }} className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition">{t.confirmContract}</button>
+              <button onClick={() => setModalData(null)} className="bg-slate-800 text-slate-300 font-bold px-4 py-2.5 rounded-xl text-xs transition">{t.cancel}</button>
             </div>
           </div>
         </div>
