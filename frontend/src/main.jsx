@@ -128,28 +128,28 @@ function LoginPage({ onLogin, currentLang, setCurrentLang }) {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4 relative">
+    <div className="min-h-screen bg-emerald-50/50 text-emerald-950 flex items-center justify-center p-4 relative font-sans">
       <div className="absolute top-4 right-4">
         <button 
           onClick={() => setCurrentLang(currentLang === 'en' ? 'kn' : 'en')} 
-          className="bg-emerald-950 hover:bg-emerald-900 text-emerald-200 px-4 py-2 rounded-xl border border-emerald-500/40 text-xs font-bold flex items-center gap-2 transition"
+          className="bg-white hover:bg-emerald-100 text-emerald-800 px-4 py-2 rounded-xl border border-emerald-300 text-xs font-bold flex items-center gap-2 shadow-sm transition"
         >
-          <Languages className="w-4 h-4" />
+          <Languages className="w-4 h-4 text-emerald-600" />
           <span>{currentLang === 'en' ? 'ಕನ್ನಡ' : 'English'}</span>
         </button>
       </div>
 
-      <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl space-y-6">
+      <div className="w-full max-w-md bg-white border border-emerald-200 rounded-3xl p-8 shadow-xl space-y-6">
         <div className="text-center space-y-2">
-          <div className="w-16 h-16 bg-emerald-500/20 border border-emerald-500/40 rounded-2xl mx-auto flex items-center justify-center shadow-lg shadow-emerald-500/10">
-            <Sprout className="w-9 h-9 text-emerald-400" />
+          <div className="w-16 h-16 bg-emerald-100 border border-emerald-300 rounded-2xl mx-auto flex items-center justify-center shadow-md">
+            <Sprout className="w-9 h-9 text-emerald-600" />
           </div>
-          <h1 className="text-2xl font-black text-white tracking-tight">{t.loginTitle}</h1>
-          <p className="text-xs text-slate-400">{t.loginSubtitle}</p>
+          <h1 className="text-2xl font-black text-emerald-900 tracking-tight">{t.loginTitle}</h1>
+          <p className="text-xs text-emerald-600 font-medium">{t.loginSubtitle}</p>
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">{t.selectRoleLabel}</label>
+          <label className="text-[11px] font-bold text-emerald-700 uppercase tracking-wider block">{t.selectRoleLabel}</label>
           <div className="grid grid-cols-2 gap-2">
             {roles.map((r) => (
               <button
@@ -158,12 +158,12 @@ function LoginPage({ onLogin, currentLang, setCurrentLang }) {
                 onClick={() => { setSelectedRole(r.id); setEmail(r.email); }}
                 className={`py-2 px-3 text-xs font-bold rounded-xl transition border text-left flex items-center justify-between ${
                   selectedRole === r.id
-                    ? "bg-emerald-600 text-slate-950 border-emerald-400 shadow-md"
-                    : "bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-700"
+                    ? "bg-emerald-600 text-white border-emerald-600 shadow-md"
+                    : "bg-emerald-50/60 text-emerald-800 border-emerald-200 hover:bg-emerald-100"
                 }`}
               >
                 <span>{r.label}</span>
-                {selectedRole === r.id && <ShieldCheck className="w-3.5 h-3.5" />}
+                {selectedRole === r.id && <ShieldCheck className="w-3.5 h-3.5 text-white" />}
               </button>
             ))}
           </div>
@@ -171,41 +171,41 @@ function LoginPage({ onLogin, currentLang, setCurrentLang }) {
 
         <form onSubmit={(e) => { e.preventDefault(); onLogin({ role: selectedRole, email }); }} className="space-y-4">
           <div className="space-y-1">
-            <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t.emailLabel}</label>
+            <label className="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">{t.emailLabel}</label>
             <div className="relative flex items-center">
-              <Mail className="absolute left-3 w-4 h-4 text-slate-500" />
+              <Mail className="absolute left-3 w-4 h-4 text-emerald-500" />
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-xs font-semibold text-white focus:outline-none focus:border-emerald-500"
+                className="w-full bg-emerald-50/40 border border-emerald-200 rounded-xl py-2.5 pl-10 pr-4 text-xs font-semibold text-emerald-900 focus:outline-none focus:border-emerald-500 focus:bg-white"
               />
             </div>
           </div>
 
           <div className="space-y-1">
-            <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t.passwordLabel}</label>
+            <label className="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">{t.passwordLabel}</label>
             <div className="relative flex items-center">
-              <Lock className="absolute left-3 w-4 h-4 text-slate-500" />
+              <Lock className="absolute left-3 w-4 h-4 text-emerald-500" />
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-xs font-semibold text-white focus:outline-none focus:border-emerald-500"
+                className="w-full bg-emerald-50/40 border border-emerald-200 rounded-xl py-2.5 pl-10 pr-4 text-xs font-semibold text-emerald-900 focus:outline-none focus:border-emerald-500 focus:bg-white"
               />
             </div>
           </div>
 
-          <div className="p-3 bg-emerald-950/40 border border-emerald-500/30 rounded-xl text-emerald-300 text-xs flex items-center space-x-2">
-            <UserCheck className="w-4 h-4 shrink-0 text-emerald-400" />
+          <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs flex items-center space-x-2">
+            <UserCheck className="w-4 h-4 shrink-0 text-emerald-600" />
             <span>{t.loginNotice}</span>
           </div>
 
           <button
             type="submit"
-            className="w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-extrabold py-3 rounded-xl transition shadow-lg shadow-emerald-600/20 text-xs uppercase tracking-wider"
+            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3 rounded-xl transition shadow-lg shadow-emerald-600/20 text-xs uppercase tracking-wider"
           >
             {t.signInBtn} {selectedRole}
           </button>
@@ -328,25 +328,25 @@ export default function App() {
         ctx.beginPath();
         ctx.moveTo(userPos.x, userPos.y);
         ctx.lineTo(pos.x, pos.y);
-        ctx.strokeStyle = idx === 0 ? '#10b981' : '#475569';
+        ctx.strokeStyle = idx === 0 ? '#059669' : '#94a3b8';
         ctx.lineWidth = idx === 0 ? 3 : 1.5;
         ctx.stroke();
 
         ctx.beginPath();
         ctx.arc(pos.x, pos.y, idx === 0 ? 7 : 5, 0, Math.PI * 2);
-        ctx.fillStyle = idx === 0 ? '#10b981' : '#64748b';
+        ctx.fillStyle = idx === 0 ? '#059669' : '#64748b';
         ctx.fill();
 
-        ctx.fillStyle = '#f8fafc';
-        ctx.font = '10px Inter';
+        ctx.fillStyle = '#0f172a';
+        ctx.font = '11px Inter, sans-serif';
         ctx.fillText(item.mandi, pos.x + 8, pos.y + 3);
       });
 
       ctx.beginPath();
       ctx.arc(userPos.x, userPos.y, 8, 0, Math.PI * 2);
-      ctx.fillStyle = '#fbbf24';
+      ctx.fillStyle = '#d97706';
       ctx.fill();
-      ctx.fillStyle = '#fef3c7';
+      ctx.fillStyle = '#b45309';
       ctx.fillText(currentLang === 'en' ? "Farmer Hub" : "ರೈತ ಕೇಂದ್ರ", userPos.x + 10, userPos.y + 4);
     }
   }, [currentPage, results, villageLocation, user, currentLang]);
@@ -356,41 +356,42 @@ export default function App() {
   }
 
   return (
-    <div className="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans select-none">
-      <header className="bg-gradient-to-r from-[#022c22] via-[#064e3b] to-[#047857] border-b border-emerald-900/60 sticky top-0 z-40 shadow-xl">
+    <div className="bg-emerald-50/40 text-emerald-950 min-h-screen flex flex-col font-sans select-none">
+      {/* Light Green Header */}
+      <header className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-600 border-b border-emerald-500/40 sticky top-0 z-40 shadow-lg text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col md:flex-row justify-between items-center gap-3">
           <div className="flex items-center space-x-3 w-full md:w-auto justify-between md:justify-start">
             <div className="flex items-center space-x-3">
-              <div className="bg-emerald-500/20 p-2 rounded-xl border border-emerald-400/30">
-                <Sprout className="w-6 h-6 text-emerald-300" />
+              <div className="bg-white/20 p-2 rounded-xl backdrop-blur-md border border-white/30">
+                <Sprout className="w-6 h-6 text-white" />
               </div>
               <div>
                 <h1 className="text-lg font-extrabold tracking-tight flex items-center gap-2 text-white">
                   AgriConnect AI 
-                  <span className="text-[10px] bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 font-bold px-2 py-0.5 rounded-full">{user.role}</span>
+                  <span className="text-[10px] bg-white text-emerald-800 font-bold px-2 py-0.5 rounded-full shadow-sm">{user.role}</span>
                 </h1>
-                <p className="text-[11px] text-emerald-200/80">Team Inframind | LEAP Agritech Hackathon 2026[cite: 1]</p>
+                <p className="text-[11px] text-emerald-100">Team Inframind | LEAP Agritech Hackathon 2026[cite: 1]</p>
               </div>
             </div>
             
-            <button onClick={() => setCurrentLang(currentLang === 'en' ? 'kn' : 'en')} className="md:hidden bg-emerald-900/80 text-emerald-200 px-3 py-1.5 rounded-xl border border-emerald-500/30 text-xs font-semibold">
+            <button onClick={() => setCurrentLang(currentLang === 'en' ? 'kn' : 'en')} className="md:hidden bg-white/20 text-white px-3 py-1.5 rounded-xl border border-white/30 text-xs font-semibold">
               {currentLang === 'en' ? 'ಕನ್ನಡ' : 'English'}
             </button>
           </div>
 
-          <nav className="flex items-center space-x-1 bg-slate-900/80 p-1 rounded-2xl border border-emerald-900/40 w-full md:w-auto overflow-x-auto">
+          <nav className="flex items-center space-x-1 bg-emerald-800/40 backdrop-blur-md p-1 rounded-2xl border border-white/20 w-full md:w-auto overflow-x-auto">
             {[1, 2, 3, 4, 5].map((pageNum) => (
               <button 
                 key={pageNum}
                 onClick={() => setCurrentPage(pageNum)} 
-                className={`nav-tab text-xs font-semibold px-3 py-2 rounded-xl transition flex items-center gap-1.5 ${
+                className={`nav-tab text-xs font-semibold px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 ${
                   currentPage === pageNum 
-                    ? 'text-emerald-400 bg-emerald-950/80 border border-emerald-500/30' 
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'text-emerald-900 bg-white font-bold shadow-md' 
+                    : 'text-emerald-100 hover:text-white hover:bg-white/10'
                 }`}
               >
                 <span className={`w-4 h-4 rounded-full text-[10px] font-bold flex items-center justify-center ${
-                  currentPage === pageNum ? 'bg-emerald-500 text-slate-950' : 'bg-slate-800 text-slate-300'
+                  currentPage === pageNum ? 'bg-emerald-600 text-white' : 'bg-emerald-900/60 text-emerald-200'
                 }`}>{pageNum}</span>
                 <span>{t[`navPage${pageNum}`]}</span>
               </button>
@@ -398,11 +399,11 @@ export default function App() {
           </nav>
 
           <div className="flex items-center space-x-2">
-            <button onClick={() => setCurrentLang(currentLang === 'en' ? 'kn' : 'en')} className="hidden md:flex bg-emerald-950/80 hover:bg-emerald-900 text-emerald-200 px-3.5 py-1.5 rounded-xl border border-emerald-500/40 text-xs font-semibold items-center gap-2 transition">
+            <button onClick={() => setCurrentLang(currentLang === 'en' ? 'kn' : 'en')} className="hidden md:flex bg-white/20 hover:bg-white/30 text-white px-3.5 py-1.5 rounded-xl border border-white/30 text-xs font-semibold items-center gap-2 transition">
               <Languages className="w-4 h-4" />
               <span>{currentLang === 'en' ? 'ಕನ್ನಡ' : 'English'}</span>
             </button>
-            <button onClick={() => setUser(null)} className="bg-rose-950/80 hover:bg-rose-900 text-rose-300 px-3 py-1.5 rounded-xl border border-rose-500/40 text-xs font-bold flex items-center gap-1.5 transition">
+            <button onClick={() => setUser(null)} className="bg-rose-600 hover:bg-rose-700 text-white px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition shadow-sm">
               <LogOut className="w-3.5 h-3.5" />
               <span>{t.signOut}</span>
             </button>
@@ -410,62 +411,63 @@ export default function App() {
         </div>
       </header>
 
+      {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
         {currentPage === 1 && (
           <div className="space-y-6">
-            <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
+            <div className="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white border border-emerald-500/30 rounded-3xl p-6 shadow-xl relative overflow-hidden">
               <div className="max-w-3xl space-y-3">
-                <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-800/40">LEAP Agritech Hackathon 2026 | Slide 2 & 3[cite: 1]</span>
-                <h2 className="text-2xl font-extrabold text-white tracking-tight">{t.p1Title}</h2>
-                <p className="text-sm text-slate-300 leading-relaxed">{t.p1Subtitle}</p>
+                <span className="text-xs font-bold uppercase tracking-widest text-emerald-900 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-200">LEAP Agritech Hackathon 2026 | Slide 2 & 3[cite: 1]</span>
+                <h2 className="text-2xl font-extrabold tracking-tight">{t.p1Title}</h2>
+                <p className="text-sm text-emerald-50 leading-relaxed">{t.p1Subtitle}</p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-2">
-                <div className="flex justify-between items-center"><span className="text-xs font-bold text-slate-400">{t.stat1Title}</span><Store className="w-5 h-5 text-amber-400" /></div>
-                <div className="text-3xl font-extrabold text-amber-400">78%</div>
-                <p className="text-xs text-slate-400 leading-relaxed">{t.stat1Desc}</p>
+              <div className="bg-white border border-emerald-200 rounded-2xl p-5 space-y-2 shadow-sm">
+                <div className="flex justify-between items-center"><span className="text-xs font-bold text-emerald-700">{t.stat1Title}</span><Store className="w-5 h-5 text-amber-500" /></div>
+                <div className="text-3xl font-extrabold text-amber-600">78%</div>
+                <p className="text-xs text-slate-600 leading-relaxed">{t.stat1Desc}</p>
               </div>
-              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-2">
-                <div className="flex justify-between items-center"><span className="text-xs font-bold text-slate-400">{t.stat2Title}</span><AlertTriangle className="w-5 h-5 text-rose-400" /></div>
-                <div className="text-3xl font-extrabold text-rose-400">6–16%</div>
-                <p className="text-xs text-slate-400 leading-relaxed">{t.stat2Desc}</p>
+              <div className="bg-white border border-emerald-200 rounded-2xl p-5 space-y-2 shadow-sm">
+                <div className="flex justify-between items-center"><span className="text-xs font-bold text-emerald-700">{t.stat2Title}</span><AlertTriangle className="w-5 h-5 text-rose-500" /></div>
+                <div className="text-3xl font-extrabold text-rose-600">6–16%</div>
+                <p className="text-xs text-slate-600 leading-relaxed">{t.stat2Desc}</p>
               </div>
-              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-2">
-                <div className="flex justify-between items-center"><span className="text-xs font-bold text-slate-400">{t.stat3Title}</span><Users className="w-5 h-5 text-emerald-400" /></div>
-                <div className="text-3xl font-extrabold text-emerald-400">70%</div>
-                <p className="text-xs text-slate-400 leading-relaxed">{t.stat3Desc}</p>
+              <div className="bg-white border border-emerald-200 rounded-2xl p-5 space-y-2 shadow-sm">
+                <div className="flex justify-between items-center"><span className="text-xs font-bold text-emerald-700">{t.stat3Title}</span><Users className="w-5 h-5 text-emerald-600" /></div>
+                <div className="text-3xl font-extrabold text-emerald-700">70%</div>
+                <p className="text-xs text-slate-600 leading-relaxed">{t.stat3Desc}</p>
               </div>
             </div>
 
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
-              <h3 className="text-base font-bold text-slate-200 flex items-center gap-2">
-                <Layers className="w-5 h-5 text-emerald-400" />
+            <div className="bg-white border border-emerald-200 rounded-2xl p-6 space-y-4 shadow-sm">
+              <h3 className="text-base font-bold text-emerald-900 flex items-center gap-2">
+                <Layers className="w-5 h-5 text-emerald-600" />
                 <span>{t.gapMatrixTitle}</span>
               </h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
-                  <thead className="bg-slate-950 text-slate-400 uppercase font-bold border-b border-slate-800">
+                  <thead className="bg-emerald-50 text-emerald-900 uppercase font-bold border-b border-emerald-200">
                     <tr>
                       <th className="p-3">{currentLang === 'en' ? 'Existing Solution' : 'ಪ್ರಸ್ತುತ ಪರಿಹಾರ'}</th>
                       <th className="p-3">{currentLang === 'en' ? 'How It Works' : 'ಕಾರ್ಯನಿರ್ವಹಣೆ'}</th>
                       <th className="p-3">{currentLang === 'en' ? 'Critical Limitation' : 'ಮಿತಿ / ಸಮಸ್ಯೆ'}</th>
-                      <th className="p-3 text-emerald-400">{currentLang === 'en' ? 'AgriConnect AI Advantage' : 'ಅಗ್ರಿಕನೆಕ್ಟ್ ಎಐ ಅನುಕೂಲ'}</th>
+                      <th className="p-3 text-emerald-700">{currentLang === 'en' ? 'AgriConnect AI Advantage' : 'ಅಗ್ರಿಕನೆಕ್ಟ್ ಎಐ ಅನುಕೂಲ'}</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800/60 font-medium text-slate-300">
+                  <tbody className="divide-y divide-emerald-100 font-medium text-slate-700">
                     <tr>
-                      <td className="p-3 font-bold text-white">Agmarknet</td>
+                      <td className="p-3 font-bold text-emerald-950">Agmarknet</td>
                       <td className="p-3">{currentLang === 'en' ? 'Daily listed modal prices' : 'ದೈನಂದಿನ ಮಾರುಕಟ್ಟೆ ಬೆಲೆಗಳು'}</td>
-                      <td className="p-3 text-rose-400">{currentLang === 'en' ? 'No transport or spoilage deduction.' : 'ಸಾರಿಗೆ ಮತ್ತು ನಷ್ಟವನ್ನು ಪರಿಗಣಿಸುವುದಿಲ್ಲ.'}</td>
-                      <td className="p-3 text-emerald-300">{currentLang === 'en' ? 'Calculates net take-home cash.' : 'ನಿವ್ವಳ ನಗದು ಲಾಭವನ್ನು ಲೆಕ್ಕಹಾಕುತ್ತದೆ.'}</td>
+                      <td className="p-3 text-rose-600 font-semibold">{currentLang === 'en' ? 'No transport or spoilage deduction.' : 'ಸಾರಿಗೆ ಮತ್ತು ನಷ್ಟವನ್ನು ಪರಿಗಣಿಸುವುದಿಲ್ಲ.'}</td>
+                      <td className="p-3 text-emerald-700 font-bold">{currentLang === 'en' ? 'Calculates net take-home cash.' : 'ನಿವ್ವಳ ನಗದು ಲಾಭವನ್ನು ಲೆಕ್ಕಹಾಕುತ್ತದೆ.'}</td>
                     </tr>
                     <tr>
-                      <td className="p-3 font-bold text-white">eNAM / ReMS</td>
+                      <td className="p-3 font-bold text-emerald-950">eNAM / ReMS</td>
                       <td className="p-3">{currentLang === 'en' ? 'Online APMC trading platform' : 'ಆನ್‌ಲೈನ್ ಎಪಿಎಂಸಿ ವೇದಿಕೆ'}</td>
-                      <td className="p-3 text-rose-400">{currentLang === 'en' ? 'No perishable spoilage model.' : 'ಕೊಳೆಯುವ ಬೆಳೆಗಳ ನಷ್ಟದ ಮಾದರಿ ಇಲ್ಲ.'}</td>
-                      <td className="p-3 text-emerald-300">{currentLang === 'en' ? 'Ranks top 3 mandis by net revenue.' : 'ಉನ್ನತ ೩ ಮಂಡಿಗಳನ್ನು ಶ್ರೇಣೀಕರಿಸುತ್ತದೆ.'}</td>
+                      <td className="p-3 text-rose-600 font-semibold">{currentLang === 'en' ? 'No perishable spoilage model.' : 'ಕೊಳೆಯುವ ಬೆಳೆಗಳ ನಷ್ಟದ ಮಾದರಿ ಇಲ್ಲ.'}</td>
+                      <td className="p-3 text-emerald-700 font-bold">{currentLang === 'en' ? 'Ranks top 3 mandis by net revenue.' : 'ಉನ್ನತ ೩ ಮಂಡಿಗಳನ್ನು ಶ್ರೇಣೀಕರಿಸುತ್ತದೆ.'}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -476,20 +478,20 @@ export default function App() {
 
         {currentPage === 2 && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <div className="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-5">
-              <div className="flex justify-between items-center border-b border-slate-800 pb-3">
-                <h2 className="text-base font-bold text-emerald-400 flex items-center gap-2">
-                  <Sliders className="w-5 h-5" /><span>{t.p2InputTitle}</span>
+            <div className="lg:col-span-5 bg-white border border-emerald-200 rounded-3xl p-6 shadow-md space-y-5">
+              <div className="flex justify-between items-center border-b border-emerald-100 pb-3">
+                <h2 className="text-base font-bold text-emerald-800 flex items-center gap-2">
+                  <Sliders className="w-5 h-5 text-emerald-600" /><span>{t.p2InputTitle}</span>
                 </h2>
-                <button onClick={() => { setCrop('Tomato'); setQuantity(50); }} className="text-xs bg-amber-950/80 hover:bg-amber-900 text-amber-300 border border-amber-500/40 font-semibold px-2.5 py-1 rounded-xl flex items-center gap-1 transition">
-                  <Mic className="w-3.5 h-3.5" /><span>ಕನ್ನಡ Voice</span>
+                <button onClick={() => { setCrop('Tomato'); setQuantity(50); }} className="text-xs bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-bold px-2.5 py-1 rounded-xl flex items-center gap-1 transition">
+                  <Mic className="w-3.5 h-3.5 text-amber-700" /><span>ಕನ್ನಡ Voice</span>
                 </button>
               </div>
 
               <div className="space-y-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{t.selectCrop}</label>
-                  <select value={crop} onChange={(e) => setCrop(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-sm font-semibold text-slate-100 focus:border-emerald-500 focus:outline-none">
+                  <label className="block text-xs font-bold text-emerald-800 uppercase tracking-wider mb-1">{t.selectCrop}</label>
+                  <select value={crop} onChange={(e) => setCrop(e.target.value)} className="w-full bg-emerald-50/50 border border-emerald-200 rounded-xl p-2.5 text-sm font-semibold text-emerald-950 focus:border-emerald-600 focus:bg-white focus:outline-none">
                     <option value="Tomato">Tomato (ಟೊಮೆಟೊ)</option>
                     <option value="Onion">Onion (ಈರುಳ್ಳಿ)</option>
                     <option value="Potato">Potato (ಆಲೂಗಡ್ಡೆ)</option>
@@ -498,15 +500,15 @@ export default function App() {
 
                 <div>
                   <div className="flex justify-between items-center mb-1">
-                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider">{t.quantity}</label>
-                    <span className="text-xs font-bold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">{quantity} qtl</span>
+                    <label className="block text-xs font-bold text-emerald-800 uppercase tracking-wider">{t.quantity}</label>
+                    <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-lg border border-emerald-300">{quantity} qtl</span>
                   </div>
-                  <input type="range" min="5" max="200" value={quantity} step="5" onChange={(e) => setQuantity(Number(e.target.value))} className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500" />
+                  <input type="range" min="5" max="200" value={quantity} step="5" onChange={(e) => setQuantity(Number(e.target.value))} className="w-full h-2 bg-emerald-100 rounded-lg appearance-none cursor-pointer accent-emerald-600" />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{t.farmerLocation}</label>
-                  <select value={villageLocation} onChange={(e) => setVillageLocation(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-sm font-semibold text-slate-100 focus:border-emerald-500 focus:outline-none">
+                  <label className="block text-xs font-bold text-emerald-800 uppercase tracking-wider mb-1">{t.farmerLocation}</label>
+                  <select value={villageLocation} onChange={(e) => setVillageLocation(e.target.value)} className="w-full bg-emerald-50/50 border border-emerald-200 rounded-xl p-2.5 text-sm font-semibold text-emerald-950 focus:border-emerald-600 focus:bg-white focus:outline-none">
                     <option value="12.5218,76.8956">Mandya Rural Hub (ಮಂಡ್ಯ)</option>
                     <option value="12.5855,77.0463">Maddur Farming Center (ಮದ್ದೂರು)</option>
                     <option value="12.2958,76.6394">Mysore Outskirts (ಮೈಸೂರು)</option>
@@ -515,44 +517,44 @@ export default function App() {
 
                 <div>
                   <div className="flex justify-between items-center mb-1">
-                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider">{t.transportRate}</label>
-                    <span className="text-xs font-bold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">₹{transportRate}/km</span>
+                    <label className="block text-xs font-bold text-emerald-800 uppercase tracking-wider">{t.transportRate}</label>
+                    <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-lg border border-emerald-300">₹{transportRate}/km</span>
                   </div>
-                  <input type="range" min="5" max="30" value={transportRate} step="1" onChange={(e) => setTransportRate(Number(e.target.value))} className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500" />
+                  <input type="range" min="5" max="30" value={transportRate} step="1" onChange={(e) => setTransportRate(Number(e.target.value))} className="w-full h-2 bg-emerald-100 rounded-lg appearance-none cursor-pointer accent-emerald-600" />
                 </div>
 
                 <div>
                   <div className="flex justify-between items-center mb-1">
-                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider">{t.minTrust}</label>
-                    <span className="text-xs font-bold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">{minTrust} / 100</span>
+                    <label className="block text-xs font-bold text-emerald-800 uppercase tracking-wider">{t.minTrust}</label>
+                    <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-lg border border-emerald-300">{minTrust} / 100</span>
                   </div>
-                  <input type="range" min="0" max="80" value={minTrust} step="5" onChange={(e) => setMinTrust(Number(e.target.value))} className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500" />
+                  <input type="range" min="0" max="80" value={minTrust} step="5" onChange={(e) => setMinTrust(Number(e.target.value))} className="w-full h-2 bg-emerald-100 rounded-lg appearance-none cursor-pointer accent-emerald-600" />
                 </div>
               </div>
             </div>
 
             <div className="lg:col-span-7 space-y-6">
-              <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4 shadow-xl">
-                <h3 className="text-sm font-bold text-emerald-400 flex items-center gap-2">
-                  <Cpu className="w-4 h-4" /><span>{currentLang === 'en' ? 'Net-Return Formula & Rules Engine[cite: 1]' : 'ನಿವ್ವಳ ಲಾಭ ಸೂತ್ರ ಮತ್ತು ಎಐ ಎಂಜಿನ್[cite: 1]'}</span>
+              <div className="bg-white border border-emerald-200 rounded-3xl p-6 space-y-4 shadow-md">
+                <h3 className="text-sm font-bold text-emerald-800 flex items-center gap-2">
+                  <Cpu className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'Net-Return Formula & Rules Engine[cite: 1]' : 'ನಿವ್ವಳ ಲಾಭ ಸೂತ್ರ ಮತ್ತು ಎಐ ಎಂಜಿನ್[cite: 1]'}</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-                  <div className="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
-                    <span className="font-bold text-slate-300">{currentLang === 'en' ? 'Spoilage Loss Formula[cite: 1]' : 'ಸಾಗಣೆ ನಷ್ಟ ಸೂತ್ರ[cite: 1]'}</span>
-                    <p className="text-slate-400">spoilage = min(0.5, hourly_rate × travel_hours)</p>
+                  <div className="bg-emerald-50/60 p-3.5 rounded-2xl border border-emerald-200 space-y-1">
+                    <span className="font-bold text-emerald-900">{currentLang === 'en' ? 'Spoilage Loss Formula[cite: 1]' : 'ಸಾಗಣೆ ನಷ್ಟ ಸೂತ್ರ[cite: 1]'}</span>
+                    <p className="text-emerald-800 font-mono">spoilage = min(0.5, hourly_rate × travel_hours)</p>
                   </div>
-                  <div className="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
-                    <span className="font-bold text-slate-300">{currentLang === 'en' ? 'Net Return / Quintal[cite: 1]' : 'ಪ್ರತಿ ಕ್ವಿಂಟಾಲ್ ನಿವ್ವಳ ಲಾಭ[cite: 1]'}</span>
-                    <p className="text-slate-400">modal_price × (1 - spoilage) - transport_per_q</p>
+                  <div className="bg-emerald-50/60 p-3.5 rounded-2xl border border-emerald-200 space-y-1">
+                    <span className="font-bold text-emerald-900">{currentLang === 'en' ? 'Net Return / Quintal[cite: 1]' : 'ಪ್ರತಿ ಕ್ವಿಂಟಾಲ್ ನಿವ್ವಳ ಲಾಭ[cite: 1]'}</span>
+                    <p className="text-emerald-800 font-mono">modal_price × (1 - spoilage) - transport_per_q</p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-3xl p-5 text-emerald-200 space-y-2">
-                <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm">
-                  <Sparkles className="w-4 h-4" /><span>{currentLang === 'en' ? 'AI Reasoning Output[cite: 1]' : 'ಎಐ ಸಲಹಾ ವರದಿ[cite: 1]'}</span>
+              <div className="bg-emerald-100/70 border border-emerald-300 rounded-3xl p-5 text-emerald-900 space-y-2 shadow-sm">
+                <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm">
+                  <Sparkles className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'AI Reasoning Output[cite: 1]' : 'ಎಐ ಸಲಹಾ ವರದಿ[cite: 1]'}</span>
                 </div>
-                <p className="text-xs leading-relaxed text-emerald-300/90">{reasoning}</p>
+                <p className="text-xs leading-relaxed text-emerald-950 font-medium">{reasoning}</p>
               </div>
             </div>
           </div>
@@ -560,33 +562,33 @@ export default function App() {
 
         {currentPage === 3 && (
           <div className="space-y-6">
-            <div className="bg-gradient-to-r from-emerald-950 via-slate-900 to-emerald-950 border border-emerald-700/50 rounded-3xl p-6 shadow-2xl space-y-2">
-              <div className="flex items-center gap-2 text-emerald-400 text-xs font-extrabold uppercase tracking-widest">
-                <Users className="w-4 h-4" /><span>{currentLang === 'en' ? 'AI Recommendation Rationale[cite: 1]' : 'ಎಐ ಶಿಫಾರಸು ವಿವರಣೆ[cite: 1]'}</span>
+            <div className="bg-gradient-to-r from-emerald-100 via-teal-50 to-emerald-100 border border-emerald-300 rounded-3xl p-6 shadow-md space-y-2">
+              <div className="flex items-center gap-2 text-emerald-800 text-xs font-extrabold uppercase tracking-widest">
+                <Users className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'AI Recommendation Rationale[cite: 1]' : 'ಎಐ ಶಿಫಾರಸು ವಿವರಣೆ[cite: 1]'}</span>
               </div>
-              <p className="text-sm font-medium text-emerald-100 leading-relaxed">{reasoning}</p>
+              <p className="text-sm font-bold text-emerald-950 leading-relaxed">{reasoning}</p>
             </div>
 
             <div>
-              <h3 className="text-base font-bold text-white mb-4 flex items-center gap-2">
-                <Trophy className="w-5 h-5 text-amber-400" /><span>{t.p3CardsHeader}</span>
+              <h3 className="text-base font-bold text-emerald-950 mb-4 flex items-center gap-2">
+                <Trophy className="w-5 h-5 text-amber-500" /><span>{t.p3CardsHeader}</span>
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {results.slice(0, 3).map((item, idx) => (
-                  <div key={item.mandi} className={`bg-slate-900 border ${idx === 0 ? 'border-2 border-emerald-500 ring-2 ring-emerald-500/20' : 'border-slate-800'} rounded-2xl p-5 space-y-3`}>
+                  <div key={item.mandi} className={`bg-white border ${idx === 0 ? 'border-2 border-emerald-600 shadow-lg' : 'border-emerald-200 shadow-sm'} rounded-2xl p-5 space-y-3`}>
                     <div className="flex justify-between items-center">
-                      <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${idx === 0 ? 'bg-emerald-500 text-slate-950' : 'bg-slate-800 text-slate-300'}`}>Rank #{idx + 1}</span>
-                      <span className="text-xs font-bold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Trust {item.trust_score}/100</span>
+                      <span className={`text-xs font-bold px-3 py-1 rounded-full ${idx === 0 ? 'bg-emerald-600 text-white' : 'bg-emerald-100 text-emerald-800'}`}>Rank #{idx + 1}</span>
+                      <span className="text-xs font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Trust {item.trust_score}/100</span>
                     </div>
-                    <h4 className="text-lg font-bold text-white">{item.mandi}</h4>
-                    <p className="text-xs text-slate-400">{currentLang === 'en' ? 'Buyer:' : 'ಖರೀದಿದಾರ:'} {item.buyer_name}</p>
-                    <div className="space-y-1.5 text-xs text-slate-300 border-t border-slate-800 pt-3">
-                      <div className="flex justify-between"><span>{currentLang === 'en' ? 'Modal Price:' : 'ಮಾರುಕಟ್ಟೆ ಬೆಲೆ:'}</span><span className="font-bold">₹{item.modal_price}/q</span></div>
+                    <h4 className="text-lg font-bold text-emerald-950">{item.mandi}</h4>
+                    <p className="text-xs text-slate-500">{currentLang === 'en' ? 'Buyer:' : 'ಖರೀದಿದಾರ:'} {item.buyer_name}</p>
+                    <div className="space-y-1.5 text-xs text-slate-700 border-t border-emerald-100 pt-3">
+                      <div className="flex justify-between"><span>{currentLang === 'en' ? 'Modal Price:' : 'ಮಾರುಕಟ್ಟೆ ಬೆಲೆ:'}</span><span className="font-bold text-emerald-950">₹{item.modal_price}/q</span></div>
                       <div className="flex justify-between"><span>{currentLang === 'en' ? 'Distance:' : 'ದೂರ:'}</span><span>{item.distance_km} km ({item.travel_hours} h)</span></div>
-                      <div className="flex justify-between"><span>{currentLang === 'en' ? 'Spoilage:' : 'ನಷ್ಟ:'}</span><span className="text-rose-400">-{item.spoilage_pct}%</span></div>
-                      <div className="flex justify-between font-bold border-t border-slate-800 pt-2"><span className="text-slate-200">{currentLang === 'en' ? 'Net Take-Home:' : 'ನಿವ್ವಳ ಲಾಭ:'}</span><span className="text-emerald-400">₹{item.net_total.toLocaleString('en-IN')}</span></div>
+                      <div className="flex justify-between"><span>{currentLang === 'en' ? 'Spoilage:' : 'ನಷ್ಟ:'}</span><span className="text-rose-600 font-bold">-{item.spoilage_pct}%</span></div>
+                      <div className="flex justify-between font-bold border-t border-emerald-100 pt-2"><span className="text-emerald-950">{currentLang === 'en' ? 'Net Take-Home:' : 'ನಿವ್ವಳ ಲಾಭ:'}</span><span className="text-emerald-700 text-sm">₹{item.net_total.toLocaleString('en-IN')}</span></div>
                     </div>
-                    <button onClick={() => setModalData(item)} className="w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-2 rounded-xl text-xs transition">
+                    <button onClick={() => setModalData(item)} className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-sm">
                       {currentLang === 'en' ? 'Lock Deal & Dispatch' : 'ಒಪ್ಪಂದ ಲಾಕ್ ಮಾಡಿ'}
                     </button>
                   </div>
@@ -598,22 +600,22 @@ export default function App() {
 
         {currentPage === 4 && (
           <div className="space-y-6">
-            <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4 shadow-xl">
+            <div className="bg-white border border-emerald-200 rounded-3xl p-6 space-y-4 shadow-md">
               <div className="flex justify-between items-center">
                 <div>
-                  <h2 className="text-base font-bold text-emerald-400 flex items-center gap-2">
+                  <h2 className="text-base font-bold text-emerald-800 flex items-center gap-2">
                     <span>{t.p4MapTitle}</span>
                   </h2>
-                  <p className="text-xs text-slate-400">{t.p4MapSub}</p>
+                  <p className="text-xs text-slate-500">{t.p4MapSub}</p>
                 </div>
-                <span className="text-xs bg-slate-800 text-slate-300 font-bold px-3 py-1 rounded-lg border border-slate-700">Karnataka Mandis[cite: 1]</span>
+                <span className="text-xs bg-emerald-100 text-emerald-800 font-bold px-3 py-1 rounded-lg border border-emerald-300">Karnataka Mandis[cite: 1]</span>
               </div>
 
-              <div className="relative w-full h-80 bg-slate-950 rounded-2xl overflow-hidden border border-slate-800">
+              <div className="relative w-full h-80 bg-emerald-50/40 rounded-2xl overflow-hidden border border-emerald-200">
                 <canvas ref={canvasRef} className="w-full h-full block" />
-                <div className="absolute bottom-3 left-3 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700 text-xs text-slate-300 flex items-center gap-3">
-                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span> {currentLang === 'en' ? 'Farmer Hub' : 'ರೈತ ಕೇಂದ್ರ'}</span>
-                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> #1 {currentLang === 'en' ? 'Optimal Mandi' : 'ಉತ್ತಮ ಮಂಡಿ'}</span>
+                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-emerald-200 text-xs text-emerald-900 flex items-center gap-3 shadow-sm font-bold">
+                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span> {currentLang === 'en' ? 'Farmer Hub' : 'ರೈತ ಕೇಂದ್ರ'}</span>
+                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> #1 {currentLang === 'en' ? 'Optimal Mandi' : 'ಉತ್ತಮ ಮಂಡಿ'}</span>
                 </div>
               </div>
             </div>
@@ -622,44 +624,44 @@ export default function App() {
 
         {currentPage === 5 && (
           <div className="space-y-6">
-            <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-6">
-              <div className="border-b border-slate-800 pb-4 flex justify-between items-center">
+            <div className="bg-white border border-emerald-200 rounded-3xl p-6 shadow-md space-y-6">
+              <div className="border-b border-emerald-100 pb-4 flex justify-between items-center">
                 <div>
-                  <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">LEAP Agritech Hackathon 2026[cite: 1]</span>
-                  <h2 className="text-2xl font-extrabold text-white">AgriConnect AI — {currentLang === 'en' ? 'Impact & Team Inframind' : 'ಪರಿಣಾಮ ಮತ್ತು ತಂಡ ಇನ್ಫ್ರಾಮೈಂಡ್'}[cite: 1]</h2>
+                  <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">LEAP Agritech Hackathon 2026[cite: 1]</span>
+                  <h2 className="text-2xl font-extrabold text-emerald-950">AgriConnect AI — {currentLang === 'en' ? 'Impact & Team Inframind' : 'ಪರಿಣಾಮ ಮತ್ತು ತಂಡ ಇನ್ಫ್ರಾಮೈಂಡ್'}[cite: 1]</h2>
                 </div>
-                <span className="text-xs bg-emerald-950 text-emerald-300 border border-emerald-800 px-3 py-1 rounded-full font-bold">GMIT Mandya[cite: 1]</span>
+                <span className="text-xs bg-emerald-100 text-emerald-800 border border-emerald-300 px-3 py-1 rounded-full font-bold">GMIT Mandya[cite: 1]</span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
-                  <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm"><IndianRupee className="w-4 h-4" /><span>{currentLang === 'en' ? 'Economic Impact' : 'ಆರ್ಥಿಕ ಪರಿಣಾಮ'}[cite: 1]</span></div>
-                  <p className="text-xs text-slate-300 leading-relaxed">{currentLang === 'en' ? 'Increases farmer net income by ₹15,000–₹30,000 per season by unlocking high-paying distant mandis[cite: 1].' : 'ದೂರದ ಉತ್ತಮ ಮಂಡಿಗಳನ್ನು ತಲುಪಿಸುವ ಮೂಲಕ ರೈತರ ಆದಾಯವನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ[cite: 1].'}</p>
+                <div className="bg-emerald-50/60 p-5 rounded-2xl border border-emerald-200 space-y-2">
+                  <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm"><IndianRupee className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'Economic Impact' : 'ಆರ್ಥಿಕ ಪರಿಣಾಮ'}[cite: 1]</span></div>
+                  <p className="text-xs text-slate-700 leading-relaxed">{currentLang === 'en' ? 'Increases farmer net income by ₹15,000–₹30,000 per season by unlocking high-paying distant mandis[cite: 1].' : 'ದೂರದ ಉತ್ತಮ ಮಂಡಿಗಳನ್ನು ತಲುಪಿಸುವ ಮೂಲಕ ರೈತರ ಆದಾಯವನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ[cite: 1].'}</p>
                 </div>
-                <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
-                  <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm"><Leaf className="w-4 h-4" /><span>{currentLang === 'en' ? 'Environmental Impact' : 'ಪರಿಸರ ಪರಿಣಾಮ'}[cite: 1]</span></div>
-                  <p className="text-xs text-slate-300 leading-relaxed">{currentLang === 'en' ? 'Reduces perishable harvest losses by 6–16% through transit-time calculations[cite: 1].' : 'ಸಾಗಣೆ ಸಮಯದಲ್ಲಿ ಬೆಳೆಗಳು ಹಾಳಾಗುವುದನ್ನು ಶೇ. ೬-೧೬ ರಷ್ಟು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ[cite: 1].'}</p>
+                <div className="bg-emerald-50/60 p-5 rounded-2xl border border-emerald-200 space-y-2">
+                  <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm"><Leaf className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'Environmental Impact' : 'ಪರಿಸರ ಪರಿಣಾಮ'}[cite: 1]</span></div>
+                  <p className="text-xs text-slate-700 leading-relaxed">{currentLang === 'en' ? 'Reduces perishable harvest losses by 6–16% through transit-time calculations[cite: 1].' : 'ಸಾಗಣೆ ಸಮಯದಲ್ಲಿ ಬೆಳೆಗಳು ಹಾಳಾಗುವುದನ್ನು ಶೇ. ೬-೧೬ ರಷ್ಟು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ[cite: 1].'}</p>
                 </div>
-                <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
-                  <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm"><Heart className="w-4 h-4" /><span>{currentLang === 'en' ? 'Social Impact' : 'ಸಾಮಾಜಿಕ ಪರಿಣಾಮ'}[cite: 1]</span></div>
-                  <p className="text-xs text-slate-300 leading-relaxed">{currentLang === 'en' ? 'Empowers smallholders with Kannada voice guidance and verified buyer trust[cite: 1].' : 'ಕನ್ನಡ ಧ್ವನಿ ಮಾರ್ಗದರ್ಶನ ಮತ್ತು ನಂಬಿಕಾರ್ಹ ಖರೀದಿದಾರರೊಂದಿಗೆ ರೈತರನ್ನು ಸಬಲೀಕರಣಗೊಳಿಸುತ್ತದೆ[cite: 1].'}</p>
+                <div className="bg-emerald-50/60 p-5 rounded-2xl border border-emerald-200 space-y-2">
+                  <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm"><Heart className="w-4 h-4 text-emerald-600" /><span>{currentLang === 'en' ? 'Social Impact' : 'ಸಾಮಾಜಿಕ ಪರಿಣಾಮ'}[cite: 1]</span></div>
+                  <p className="text-xs text-slate-700 leading-relaxed">{currentLang === 'en' ? 'Empowers smallholders with Kannada voice guidance and verified buyer trust[cite: 1].' : 'ಕನ್ನಡ ಧ್ವನಿ ಮಾರ್ಗದರ್ಶನ ಮತ್ತು ನಂಬಿಕಾರ್ಹ ಖರೀದಿದಾರರೊಂದಿಗೆ ರೈತರನ್ನು ಸಬಲೀಕರಣಗೊಳಿಸುತ್ತದೆ[cite: 1].'}</p>
                 </div>
               </div>
 
-              <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3">
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">{currentLang === 'en' ? 'Team Inframind Members' : 'ತಂಡ ಇನ್ಫ್ರಾಮೈಂಡ್ ಸದಸ್ಯರು'}[cite: 1]</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-medium text-slate-300">
-                  <div className="p-3 bg-slate-900 rounded-xl border border-slate-800">
-                    <p className="font-bold text-emerald-400 text-sm">Aishwarya NS[cite: 1]</p>
-                    <p className="text-slate-400">{currentLang === 'en' ? 'Team Leader' : 'ತಂಡದ ನಾಯಕಿ'}[cite: 1]</p>
+              <div className="bg-emerald-50/60 p-5 rounded-2xl border border-emerald-200 space-y-3">
+                <h3 className="text-xs font-bold text-emerald-800 uppercase tracking-wider">{currentLang === 'en' ? 'Team Inframind Members' : 'ತಂಡ ಇನ್ಫ್ರಾಮೈಂಡ್ ಸದಸ್ಯರು'}[cite: 1]</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-medium text-slate-700">
+                  <div className="p-3.5 bg-white rounded-xl border border-emerald-200 shadow-sm">
+                    <p className="font-bold text-emerald-900 text-sm">Aishwarya NS[cite: 1]</p>
+                    <p className="text-emerald-700 font-semibold">{currentLang === 'en' ? 'Team Leader' : 'ತಂಡದ ನಾಯಕಿ'}[cite: 1]</p>
                   </div>
-                  <div className="p-3 bg-slate-900 rounded-xl border border-slate-800">
-                    <p className="font-bold text-white text-sm">Varshini V[cite: 1]</p>
-                    <p className="text-slate-400">{currentLang === 'en' ? 'Team Member' : 'ಸದಸ್ಯೆ'}[cite: 1]</p>
+                  <div className="p-3.5 bg-white rounded-xl border border-emerald-200 shadow-sm">
+                    <p className="font-bold text-emerald-950 text-sm">Varshini V[cite: 1]</p>
+                    <p className="text-slate-600">{currentLang === 'en' ? 'Team Member' : 'ಸದಸ್ಯೆ'}[cite: 1]</p>
                   </div>
-                  <div className="p-3 bg-slate-900 rounded-xl border border-slate-800">
-                    <p className="font-bold text-white text-sm">Saniya Banu[cite: 1]</p>
-                    <p className="text-slate-400">{currentLang === 'en' ? 'Team Member' : 'ಸದಸ್ಯೆ'}[cite: 1]</p>
+                  <div className="p-3.5 bg-white rounded-xl border border-emerald-200 shadow-sm">
+                    <p className="font-bold text-emerald-950 text-sm">Saniya Banu[cite: 1]</p>
+                    <p className="text-slate-600">{currentLang === 'en' ? 'Team Member' : 'ಸದಸ್ಯೆ'}[cite: 1]</p>
                   </div>
                 </div>
               </div>
@@ -668,37 +670,39 @@ export default function App() {
         )}
       </main>
 
-      <footer className="bg-slate-900 border-t border-slate-800 py-4 px-4 sm:px-8 mt-auto sticky bottom-0 z-30 shadow-2xl">
+      {/* Footer Navigation */}
+      <footer className="bg-white border-t border-emerald-200 py-4 px-4 sm:px-8 mt-auto sticky bottom-0 z-30 shadow-lg">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <button onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))} disabled={currentPage === 1} className="bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed">
-            <ChevronLeft className="w-4 h-4" /><span>{t.prevBtn}</span>
+          <button onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))} disabled={currentPage === 1} className="bg-emerald-100 hover:bg-emerald-200 text-emerald-900 px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed">
+            <ChevronLeft className="w-4 h-4 text-emerald-700" /><span>{t.prevBtn}</span>
           </button>
-          <span className="text-xs font-bold text-slate-400 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">Page {currentPage} of 5</span>
-          <button onClick={() => setCurrentPage(prev => Math.min(5, prev + 1))} disabled={currentPage === 5} className="bg-emerald-600 hover:bg-emerald-500 text-slate-950 px-4 py-2 rounded-xl text-xs font-extrabold transition flex items-center gap-1.5 shadow-lg shadow-emerald-600/20 disabled:opacity-40">
+          <span className="text-xs font-bold text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200">Page {currentPage} of 5</span>
+          <button onClick={() => setCurrentPage(prev => Math.min(5, prev + 1))} disabled={currentPage === 5} className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-extrabold transition flex items-center gap-1.5 shadow-md disabled:opacity-40">
             <span>{t.nextBtn}</span><ChevronRight className="w-4 h-4" />
           </button>
         </div>
       </footer>
 
+      {/* Modal */}
       {modalData && (
-        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
-            <div className="flex justify-between items-center border-b border-slate-800 pb-3">
-              <h3 className="text-base font-bold text-emerald-400 flex items-center gap-2">
-                <Handshake className="w-5 h-5" /><span>{t.lockDeal}</span>
+        <div className="fixed inset-0 bg-emerald-950/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white border border-emerald-200 rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div className="flex justify-between items-center border-b border-emerald-100 pb-3">
+              <h3 className="text-base font-bold text-emerald-900 flex items-center gap-2">
+                <Handshake className="w-5 h-5 text-emerald-600" /><span>{t.lockDeal}</span>
               </h3>
-              <button onClick={() => setModalData(null)} className="text-slate-400 hover:text-white"><X className="w-5 h-5" /></button>
+              <button onClick={() => setModalData(null)} className="text-slate-400 hover:text-slate-600"><X className="w-5 h-5" /></button>
             </div>
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className="text-xs text-slate-700 leading-relaxed font-medium">
               {currentLang === 'en' ? `Locking deal with ${modalData.buyer_name} at ${modalData.mandi} for ₹${modalData.net_total.toLocaleString('en-IN')}[cite: 1].` : `${modalData.buyer_name} (${modalData.mandi}) ಅವರೊಂದಿಗೆ ₹${modalData.net_total.toLocaleString('en-IN')} ಮೊತ್ತಕ್ಕೆ ಒಪ್ಪಂದ ಲಾಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ[cite: 1].`}
             </p>
-            <div className="bg-slate-950 p-3 rounded-xl text-xs space-y-1.5 border border-slate-800 text-slate-300">
+            <div className="bg-emerald-50 p-3 rounded-xl text-xs space-y-1.5 border border-emerald-200 text-emerald-900 font-bold">
               <div className="flex justify-between"><span>{t.paymentTerms}</span></div>
               <div className="flex justify-between"><span>{t.buyerVerif}</span></div>
             </div>
             <div className="flex gap-2 pt-2">
-              <button onClick={() => { alert(currentLang === 'en' ? "✅ Contract confirmed! Digital APMC code sent[cite: 1]." : "✅ ಒಪ್ಪಂದ ದೃಢೀಕರಿಸಲಾಗಿದೆ! ಡಿಜಿಟಲ್ ಎಪಿಎಂಸಿ ಕೋಡ್ ಕಳುಹಿಸಲಾಗಿದೆ[cite: 1]."); setModalData(null); }} className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition">{t.confirmContract}</button>
-              <button onClick={() => setModalData(null)} className="bg-slate-800 text-slate-300 font-bold px-4 py-2.5 rounded-xl text-xs transition">{t.cancel}</button>
+              <button onClick={() => { alert(currentLang === 'en' ? "✅ Contract confirmed! Digital APMC code sent[cite: 1]." : "✅ ಒಪ್ಪಂದ ದೃಢೀಕರಿಸಲಾಗಿದೆ! ಡಿಜಿಟಲ್ ಎಪಿಎಂಸಿ ಕೋಡ್ ಕಳುಹಿಸಲಾಗಿದೆ[cite: 1]."); setModalData(null); }} className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-md">{t.confirmContract}</button>
+              <button onClick={() => setModalData(null)} className="bg-slate-100 text-slate-700 font-bold px-4 py-2.5 rounded-xl text-xs transition border border-slate-200">{t.cancel}</button>
             </div>
           </div>
         </div>
